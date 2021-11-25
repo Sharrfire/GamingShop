@@ -8520,6 +8520,8 @@ div.nk-error {
 
 .nk-product-cat-2 .nk-product-image {
     width: 200px;
+    width: 255px;
+    margin: 15px 0 15px 35px;
 }
 
 .nk-product-cat-2 .nk-product-image ~ .nk-product-cont {

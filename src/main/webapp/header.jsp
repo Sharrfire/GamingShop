@@ -31,30 +31,6 @@
                     </li>
                     <li><a class="nk-social-pinterest" href="#"><span class="fab fa-pinterest-p"></span></a></li>
 
-                    <!-- Additional Social Buttons
-                        <li><a class="nk-social-behance" href="#"><span class="fab fa-behance"></span></a></li>
-                        <li><a class="nk-social-bitbucket" href="#"><span class="fab fa-bitbucket"></span></a></li>
-                        <li><a class="nk-social-dropbox" href="#"><span class="fab fa-dropbox"></span></a></li>
-                        <li><a class="nk-social-dribbble" href="#"><span class="fab fa-dribbble"></span></a></li>
-                        <li><a class="nk-social-deviantart" href="#"><span class="fab fa-deviantart"></span></a></li>
-                        <li><a class="nk-social-flickr" href="#"><span class="fab fa-flickr"></span></a></li>
-                        <li><a class="nk-social-foursquare" href="#"><span class="fab fa-foursquare"></span></a></li>
-                        <li><a class="nk-social-github" href="#"><span class="fab fa-github"></span></a></li>
-                        <li><a class="nk-social-instagram" href="#"><span class="fab fa-instagram"></span></a></li>
-                        <li><a class="nk-social-linkedin" href="#"><span class="fab fa-linkedin"></span></a></li>
-                        <li><a class="nk-social-medium" href="#"><span class="fab fa-medium"></span></a></li>
-                        <li><a class="nk-social-odnoklassniki" href="#"><span class="fab fa-odnoklassniki"></span></a></li>
-                        <li><a class="nk-social-paypal" href="#"><span class="fab fa-paypal"></span></a></li>
-                        <li><a class="nk-social-reddit" href="#"><span class="fab fa-reddit"></span></a></li>
-                        <li><a class="nk-social-skype" href="#"><span class="fab fa-skype"></span></a></li>
-                        <li><a class="nk-social-soundcloud" href="#"><span class="fab fa-soundcloud"></span></a></li>
-                        <li><a class="nk-social-slack" href="#"><span class="fab fa-slack"></span></a></li>
-                        <li><a class="nk-social-tumblr" href="#"><span class="fab fa-tumblr"></span></a></li>
-                        <li><a class="nk-social-vimeo" href="#"><span class="fab fa-vimeo"></span></a></li>
-                        <li><a class="nk-social-vk" href="#"><span class="fab fa-vk"></span></a></li>
-                        <li><a class="nk-social-wordpress" href="#"><span class="fab fa-wordpress"></span></a></li>
-                        <li><a class="nk-social-youtube" href="#"><span class="fab fa-youtube"></span></a></li>
-                    -->
                 </ul>
             </div>
             <div class="nk-contacts-right">
@@ -133,178 +109,49 @@
         <div class="container">
             <div class="nk-nav-table">
 
-                <a href="index.html" class="nk-nav-logo">
+                <a href="home" class="nk-nav-logo">
                     <img src="assets/images/logo.png" alt="GoodGames" width="199">
                 </a>
 
                 <ul class="nk-nav nk-nav-right d-none d-lg-table-cell" data-nav-mobile="#nk-nav-mobile">
 
-                    <li class=" nk-drop-item">
-                        <a href="elements.html">
-                            Features
 
-                        </a>
-                        <ul class="dropdown">
-
-                            <li>
-                                <a href="elements.html">
-                                    Elements (Shortcodes)
-
-                                </a>
-                            </li>
-                            <li class=" nk-drop-item">
-                                <a href="forum.html">
-                                    Forum
-
-                                </a>
-                                <ul class="dropdown">
-
-                                    <li>
-                                        <a href="forum.html">
-                                            Forum
-
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="forum-topics.html">
-                                            Topics
-
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="forum-single-topic.html">
-                                            Single Topic
-
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="widgets.html">
-                                    Widgets
-
-                                </a>
-                            </li>
-                            <li>
-                                <a href="coming-soon.html">
-                                    Coming Soon
-
-                                </a>
-                            </li>
-                            <li>
-                                <a href="offline.html">
-                                    Offline
-
-                                </a>
-                            </li>
-                            <li>
-                                <a href="404.html">
-                                    404
-
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class=" nk-drop-item">
-                        <a href="blog-list.html">
-                            Blog
-
-                        </a>
-                        <ul class="dropdown">
-
-                            <li>
-                                <a href="news.html">
-                                    News
-
-                                </a>
-                            </li>
-                            <li class=" nk-drop-item">
-                                <a href="blog-grid.html">
-                                    Blog With Sidebar
-
-                                </a>
-                                <ul class="dropdown">
-
-                                    <li>
-                                        <a href="blog-grid.html">
-                                            Blog Grid
-
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="blog-list.html">
-                                            Blog List
-
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="blog-fullwidth.html">
-                                    Blog Fullwidth
-
-                                </a>
-                            </li>
-                            <li>
-                                <a href="blog-article.html">
-                                    Blog Article
-
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
                     <li>
-                        <a href="gallery.html">
-                            Gallery
-
-                        </a>
-                    </li>
-
-                    <li class=" nk-drop-item">
-                        <a href="store.html">
+                        <a href="store">
                             Store
 
                         </a>
-                        <ul class="dropdown">
-
-                            <li>
-                                <a href="store.html">
-                                    Store
-
-                                </a>
-                            </li>
-                            <li>
-                                <a href="store-product.html">
-                                    Product
-
-                                </a>
-                            </li>
-                            <li>
-                                <a href="store-catalog.html">
-                                    Catalog
-
-                                </a>
-                            </li>
-                            <li>
-                                <a href="store-catalog-alt.html">
-                                    Catalog Alt
-
-                                </a>
-                            </li>
-                            <li>
-                                <a href="store-checkout.html">
-                                    Checkout
-
-                                </a>
-                            </li>
-                            <li>
-                                <a href="store-cart.html">
-                                    Cart
-
-                                </a>
-                            </li>
-                        </ul>
                     </li>
+                    <li>
+                        <a href="gallery">
+                            Gallery
+                        </a>
+                    </li>
+                    <li>
+                        <a href="product">
+                            Product
+
+                        </a>
+                    </li>
+                    <li>
+                        <a href="catalog">
+                            Catalog
+
+                        </a>
+                    </li>
+                    <li>
+                        <a href="checkout">
+                            Checkout
+
+                        </a>
+                    </li>
+                    <li>
+                        <a href="cart">
+                            Cart
+
+                        </a>
+                    </li>
+
                 </ul>
                 <ul class="nk-nav nk-nav-right nk-nav-icons">
 
@@ -340,7 +187,7 @@ Additional Classes:
 <div id="nk-nav-mobile" class="nk-navbar nk-navbar-side nk-navbar-right-side nk-navbar-overlay-content d-lg-none">
     <div class="nano">
         <div class="nano-content">
-            <a href="index.html" class="nk-nav-logo">
+            <a href="/" class="nk-nav-logo">
                 <img src="assets/images/logo.png" alt="" width="120">
             </a>
             <div class="nk-navbar-mobile-content">
