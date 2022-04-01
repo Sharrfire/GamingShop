@@ -19,14 +19,14 @@ import entity.Product;
 @WebServlet("/product")
 public class ProductControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ProductControl() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ProductControl() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -39,7 +39,7 @@ public class ProductControl extends HttpServlet {
 		List<Category> listCate = dao.getAllCategory();
 		Product p= dao.getProductByID(pID);
 		Category c= dao.getCategoryByProductID(pID);
-        
+
 		// b2: set data to jsp
 		request.setAttribute("listCate", listCate);
 		request.setAttribute("p", p);

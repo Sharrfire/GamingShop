@@ -39,10 +39,12 @@ public class CategoryControl extends HttpServlet {
 		DAO dao = new DAO();
 		List<Category> listCate = dao.getAllCategory();
 		List<Product> listProductByID = dao.getProductByCID(cateID);
+		Category c= dao.getCategoryByID(cateID);
 
 		// b2: set data to jsp
 		request.setAttribute("listProductByID", listProductByID);
 		request.setAttribute("listCate", listCate);
+		request.setAttribute("cate", c);
 		request.getRequestDispatcher("/WEB-INF/views/category.jsp").forward(request, response);
 	}
 
