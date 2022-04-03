@@ -19,14 +19,14 @@ import entity.Product;
 @WebServlet("/product")
 public class ProductControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public ProductControl() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ProductControl() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -46,7 +46,7 @@ public class ProductControl extends HttpServlet {
 		request.setAttribute("c", c);
 
 
-		request.getRequestDispatcher("/WEB-INF/views/product.jsp").forward(request, response);	}
+		request.getRequestDispatcher("/views/product.jsp").forward(request, response);	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

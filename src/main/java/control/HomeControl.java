@@ -36,7 +36,7 @@ public class HomeControl extends HttpServlet {
 		request.setAttribute("listLatest", listLatest);
 		request.setAttribute("listCate", listCate);
 
-		request.getRequestDispatcher("/WEB-INF/views/home.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/home.jsp").forward(request, response);
 		// 404 -> url
 		// 500 -> jsp properties
 	}

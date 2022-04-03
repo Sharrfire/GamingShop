@@ -45,11 +45,11 @@ public class LoginControl extends HttpServlet {
 		Boolean checkValid=dao.checkLogin(username, pass);
 		Account a= dao.login(username, pass);
 		if(pass==null) { //fix truong hop message loi xuat hien khi moi load trang
-			request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
+			request.getRequestDispatcher("/views/login.jsp").forward(request, response);
 		}else {
 		if(a==null) {
 			request.setAttribute("mess", "Wrong Username or password");
-			request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
+			request.getRequestDispatcher("/views/login.jsp").forward(request, response);
 
 		}else {
 			HttpSession session=request.getSession();

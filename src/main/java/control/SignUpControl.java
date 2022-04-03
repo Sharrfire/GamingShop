@@ -44,19 +44,19 @@ public class SignUpControl extends HttpServlet {
 		String pass = request.getParameter("pass");
 		String re_pass = request.getParameter("repass");
 		if(pass==null) {
-			request.getRequestDispatcher("/WEB-INF/views/signUp.jsp").forward(request, response);
+			request.getRequestDispatcher("/views/signUp.jsp").forward(request, response);
 		}else {
 			Account a = dao.checkAcountExist(username);
 			if(!pass.equals(re_pass)) {
 				request.setAttribute("mess", "Pass and RePass must be the same");
-				request.getRequestDispatcher("/WEB-INF/views/signUp.jsp").forward(request, response);
+				request.getRequestDispatcher("/views/signUp.jsp").forward(request, response);
 			}else if(a==null) {
 				dao.signup(username, pass);
 				response.sendRedirect("login");
 
 			}else {
 				request.setAttribute("mess", "Pass and RePass must be the same");
-				request.getRequestDispatcher("/WEB-INF/views/signUp.jsp").forward(request, response);
+				request.getRequestDispatcher("/views/signUp.jsp").forward(request, response);
 
 			}
 		

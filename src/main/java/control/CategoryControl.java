@@ -45,7 +45,7 @@ public class CategoryControl extends HttpServlet {
 		request.setAttribute("listProductByID", listProductByID);
 		request.setAttribute("listCate", listCate);
 		request.setAttribute("cate", c);
-		request.getRequestDispatcher("/WEB-INF/views/category.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/category.jsp").forward(request, response);
 	}
 
 	/**

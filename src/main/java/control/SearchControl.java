@@ -41,7 +41,7 @@ public class SearchControl extends HttpServlet {
 		
 		request.setAttribute("listCate", listCate);
 		request.setAttribute("listProductByID", list);
-		request.getRequestDispatcher("/WEB-INF/views/category.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/category.jsp").forward(request, response);
 
 	
 	}
