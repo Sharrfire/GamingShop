@@ -8,13 +8,23 @@ public class Product {
 	private String shortDescription;
 	private String description;
 	private int soldAmount;
+	private int cID;
+    private int amount;
 
 	public Product() {
 
 	}
 
+	public Product(int id, String name, double price,  String image,int amount) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.image = image;
+		this.amount=amount;
+	}
 	public Product(int id, String name, double price,  String image,String shortDescription, String description,
-			 int soldAmount) {
+			 int soldAmount ,int cID) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -23,6 +33,7 @@ public class Product {
 		this.description = description;
 		this.shortDescription = shortDescription;
 		this.soldAmount = soldAmount;
+		this.cID=cID;
 	}
 
 
@@ -95,11 +106,31 @@ public class Product {
 		this.soldAmount = soldAmount;
 	}
 
-	@Override
-	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", price=" + price + ", image=" + image + ", description="
-				+ description + ", shortDescription=" + shortDescription + ", soldAmount=" + soldAmount + "]";
+	
+	public int getAmount() {
+		return amount;
 	}
 
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+
+	
+	public int getcID() {
+		return cID;
+	}
+
+	public void setcID(int cID) {
+		this.cID = cID;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", price=" + price + ", image=" + image + ", shortDescription="
+				+ shortDescription + ", description=" + description + ", soldAmount=" + soldAmount + ", cID=" + cID
+				+ "]";
+	}
+
+	
 
 }

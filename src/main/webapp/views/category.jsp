@@ -122,7 +122,7 @@
 				<div class="col-lg-3">
 					<div class="nk-product-cat-2">
 						<a class="nk-product-image" href="product?id=${o.id}"> <img
-							src="${o.image}"
+						style="width:220px;height: 330px"	src="${o.image}"
 										alt="${o.name}">
 						</a>
 						<div class="nk-product-cont">

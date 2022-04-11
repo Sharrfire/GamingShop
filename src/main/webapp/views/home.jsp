@@ -197,7 +197,7 @@
 						<div>
 							<div class="pl-5 pr-5">
 								<div class="nk-product-cat-3">
-									<a class="nk-product-image" href="product"> <img
+									<a class="nk-product-image" href="product?id=${pt.id}"> <img style="width: 115px; height: 175px"
 										src="${pt.image}"
 										alt="${pt.name}">
 									</a>
@@ -228,8 +228,8 @@
 				<c:forEach var="o" items="${listLatest}">
 					<div class="col-lg-4 col-md-6">
 						<div class="nk-product-cat">
-							<a class="nk-product-image" href="product"> <img height="115"
-								width="auto" src="${o.image}" alt="${o.name}r">
+							<a class="nk-product-image" href="product?id=${pt.id}"> <img style="width: 115px; height: 153px"
+							 src="${o.image}" alt="${o.name}r">
 							</a>
 							<div class="nk-product-cont">
 								<h3 class="nk-product-title h5">

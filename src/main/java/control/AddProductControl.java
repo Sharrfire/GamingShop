@@ -17,39 +17,48 @@ import entity.Account;
 @WebServlet("/addProduct")
 public class AddProductControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AddProductControl() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String name = request.getParameter("name");
-		String price = request.getParameter("price");
-		String image = request.getParameter("image");
-		String shortDescription =  request.getParameter("shortDescription");
-		String description = request.getParameter("description");
-		String soldAmount = request.getParameter("soldAmount");
-		String category = request.getParameter("category");
-		HttpSession session= request.getSession();
-		Account a= (Account) session.getAttribute("acc");
-		int sid = a.getId();
-		DAO dao = new DAO();
-		dao.insertProduct(name, Double.parseDouble(price), image, shortDescription, description, Integer.parseInt(soldAmount), Integer.parseInt(category) , sid);
-		response.sendRedirect("productManager");
+	public AddProductControl() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		DAO dao = new DAO();
+		String name = request.getParameter("name");
+		String price = request.getParameter("price");
+		String image = request.getParameter("image");
+		String shortDescription = request.getParameter("shortDescription");
+		String description = request.getParameter("description");
+		String soldAmount = request.getParameter("soldAmount");
+		String category = request.getParameter("category");
+		int soldAmountInteger = Integer.parseInt(soldAmount);
+		int categorytInteger = Integer.parseInt(soldAmount);
+
+		HttpSession session = request.getSession();
+		Account a = (Account) session.getAttribute("acc");
+		int sid = a.getId();
+		dao.insertProduct(name, Double.parseDouble(price), image, shortDescription, description, soldAmountInteger,
+				categorytInteger, sid);
+		response.sendRedirect("productManager");
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
