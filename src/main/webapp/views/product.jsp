@@ -103,7 +103,7 @@
                         <!-- START: Product Photos -->
                         <div class="nk-popup-gallery">
                             <div class="nk-gallery-item-box">
-                                <a href="${p.name}" class="nk-gallery-item" data-size="1200x554">
+                                <a href="${p.image}" class="nk-gallery-item" data-size="1200x554">
                                     <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
                                     <img src="${p.image}" alt="${p.name}">
                                 </a>
@@ -266,16 +266,7 @@
     </div>
 </div>
 <div class="nk-gap-2"></div>
-
-    <jsp:include page="footer.jsp"/>
-        
-    </div>
-
-    
-
-
-
-
+    <jsp:include page="footer.jsp"/></div>
 <jsp:include page="searchModal.jsp"/>
 <jsp:include page="script.jsp"/>
 
