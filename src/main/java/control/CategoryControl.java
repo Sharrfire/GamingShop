@@ -35,16 +35,25 @@ public class CategoryControl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String cateID = request.getParameter("cid");
-		// b1: get data from dao
+
 		DAO dao = new DAO();
+		List<Product> list = dao.getAllProduct();
+		List<Product> listT10 = dao.getTop10Product();
+		List<Product> listGOTY = dao.getGOTY();
+		List<Product> listLatest = dao.getLast();
 		List<Category> listCate = dao.getAllCategory();
+		
 		List<Product> listProductByID = dao.getProductByCID(cateID);
 		Category c= dao.getCategoryByID(cateID);
 
 		// b2: set data to jsp
 		request.setAttribute("listProductByID", listProductByID);
-		request.setAttribute("listCate", listCate);
 		request.setAttribute("cate", c);
+		request.setAttribute("listP", list);
+		request.setAttribute("listT10", listT10);
+		request.setAttribute("listGOTY", listGOTY);
+		request.setAttribute("listLatest", listLatest);
+		request.setAttribute("listCate", listCate);
 		request.getRequestDispatcher("/views/category.jsp").forward(request, response);
 	}
 

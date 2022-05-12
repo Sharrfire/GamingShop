@@ -3,7 +3,7 @@
 
 <html>
 <head>
-	<title>Title</title>
+<title>Title</title>
 </head>
 
 
@@ -42,7 +42,8 @@
 					</c:if>
 
 					<c:if test="${sessionScope.acc.isSell ==1}">
-						<li><a href="productManager"> <strong>Manager Product</strong></a></li>
+						<li><a href="productManager"> <strong>Manager
+									Product</strong></a></li>
 					</c:if>
 					<c:if test="${sessionScope.acc !=null}">
 						<li><strong>Hello ${sessionScope.acc.user} </strong></li>
@@ -64,18 +65,18 @@
             .nk-navbar-autohide
     -->
 	<nav
-			class="nk-navbar nk-navbar-top nk-navbar-sticky nk-navbar-autohide">
+		class="nk-navbar nk-navbar-top nk-navbar-sticky nk-navbar-autohide">
 		<div class="container">
 			<div class="nk-nav-table">
 				<a href="home" class="nk-nav-logo"> <img
-						src="assets/images/logo.png" alt="GoodGames" width="199">
+					src="assets/images/logo.png" alt="GoodGames" width="199">
 				</a>
 				<ul class="nk-nav nk-nav-right d-none d-lg-table-cell"
 					data-nav-mobile="#nk-nav-mobile">
 					<li><a href="home"> Home </a></li>
 
 					<li><a href="#" data-toggle="modal" data-target="#modalSearch">
-						Search </a></li>
+							Search </a></li>
 
 					<li class=" nk-drop-item"><a href="#"> Category </a>
 						<ul class="dropdown">
@@ -85,15 +86,17 @@
 							</c:forEach>
 						</ul></li>
 
-					<li><a href="cart"> Cart </a></li>
+					<li><a href="print"> Cart </a></li>
+					<li><a href="checkout"> Checkout </a></li>
+
 
 				</ul>
 				<ul class="nk-nav nk-nav-right nk-nav-icons">
 
 					<li class="single-icon d-lg-none"><a href="#"
-														 class="no-link-effect" data-nav-toggle="#nk-nav-mobile"> <span
+						class="no-link-effect" data-nav-toggle="#nk-nav-mobile"> <span
 							class="nk-icon-burger"> <span class="nk-t-1"></span> <span
-							class="nk-t-2"></span> <span class="nk-t-3"></span>
+								class="nk-t-2"></span> <span class="nk-t-3"></span>
 						</span>
 					</a></li>
 
@@ -120,11 +123,11 @@ Additional Classes:
 .nk-navbar-overlay-content
 -->
 <div id="nk-nav-mobile"
-	 class="nk-navbar nk-navbar-side nk-navbar-right-side nk-navbar-overlay-content d-lg-none">
+	class="nk-navbar nk-navbar-side nk-navbar-right-side nk-navbar-overlay-content d-lg-none">
 	<div class="nano">
 		<div class="nano-content">
 			<a href="/" class="nk-nav-logo"> <img
-					src="assets/images/logo.png" alt="" width="120">
+				src="assets/images/logo.png" alt="" width="120">
 			</a>
 			<div class="nk-navbar-mobile-content">
 				<ul class="nk-nav">

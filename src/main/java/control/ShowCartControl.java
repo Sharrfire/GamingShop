@@ -2,6 +2,7 @@
 package control;
 
 import dao.DAO;
+import entity.Category;
 import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,11 +25,13 @@ public class ShowCartControl extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+		DAO dao = new DAO();
+		List<Category> listCate = dao.getAllCategory();
+		request.setAttribute("listCate", listCate);
+
         Cookie arr[] = request.getCookies();
         PrintWriter out = response.getWriter();
         List<Product> list = new ArrayList<>();
-        DAO dao = new DAO();
         for (Cookie o : arr) {
             if (o.getName().equals("id")) {
                 String txt[] = o.getValue().split(",");

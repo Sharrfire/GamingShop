@@ -19,14 +19,14 @@ import entity.Product;
 @WebServlet("/edit")
 public class EditProductControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public EditProductControl() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public EditProductControl() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -44,7 +44,7 @@ public class EditProductControl extends HttpServlet {
 		// b1: get data from dao
 		DAO dao = new DAO();
 		dao.editProductName(pname,price, pimage, pshortDescription, pDescription,pcategory, pid);
-
+	
 //		(String name, String price,String image,String shortDescription,String description,String category,String pid) {
 
 		response.sendRedirect("productManager");

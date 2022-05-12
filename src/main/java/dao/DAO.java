@@ -1,5 +1,9 @@
 package dao;
 
+import entity.Account;
+import entity.Category;
+import entity.Product;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,9 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import context.DBContext;
-import entity.Account;
-import entity.Category;
-import entity.Product;
 
 public class DAO {
 
@@ -18,8 +19,8 @@ public class DAO {
 	ResultSet rs = null;
 
 	/*------------------------------
-	 * Start Account method
-	 * ------------------------------*/
+	* Start Account method
+	* ------------------------------*/
 
 	// Get Account
 	public Account login(String username, String pass) {
@@ -94,8 +95,8 @@ public class DAO {
 	 * ------------------------------*/
 
 	/*------------------------------
-	 * Start Product method
-	 * ------------------------------*/
+	* Start Product method
+	* ------------------------------*/
 
 	// Get All
 	public List<Product> getAllProduct() {
@@ -237,11 +238,12 @@ public class DAO {
 	}
 
 	// Insert Product by ID
-	public void insertProduct(String name, double price,String image,String shortDescription,String description, int soldAmount,int category,int sID ) {
-		//remove quote
-		String newName=name.replaceAll("\'", "");
-		String newShortDescription=shortDescription.replaceAll("\'", "");
-		String newDescription=description.replaceAll("\'", "");
+	public void insertProduct(String name, double price, String image, String shortDescription, String description,
+			int soldAmount, int category, int sID) {
+		// remove quote
+		String newName = name.replaceAll("\'", "");
+		String newShortDescription = shortDescription.replaceAll("\'", "");
+		String newDescription = description.replaceAll("\'", "");
 
 		String query = "Insert into PRODUCT (NAME, PRICE,IMAGE,shortDescription,description,soldAmount,cID,sell_ID)values ( ?, ?, ?,?,?,?,?,?);"
 				+ "";
@@ -250,7 +252,7 @@ public class DAO {
 			ps = conn.prepareStatement(query);
 			ps.setString(1, newName);
 			ps.setDouble(2, price);
-			ps.setString(3,image );
+			ps.setString(3, image);
 			ps.setString(4, newShortDescription);
 			ps.setString(5, newDescription);
 			ps.setInt(6, soldAmount);
@@ -261,34 +263,29 @@ public class DAO {
 		} catch (Exception e) {
 		}
 	}
-	//Edit Product by ID
-	public void editProduct(String name, double price,String image,String shortDescription,String description,int category,String pid) {
-		//remove quote
-		String newName=name.replaceAll("\'", "");
-		String newShortDescription=shortDescription.replaceAll("\'", "");
-		String newDescription=description.replaceAll("\'", "");
 
-		String query = "UPDATE product"
-				+ "SET NAME = ?"
-				+ "PRICE = ?"
-				+ "IMAGE = ?"
-				+ "shortDescription =?"
-				+ "description = ?"
-				+ "category = ?"
+	// Edit Product by ID
+	public void editProduct(String name, double price, String image, String shortDescription, String description,
+			int category, String pid) {
+		// remove quote
+		String newName = name.replaceAll("\'", "");
+		String newShortDescription = shortDescription.replaceAll("\'", "");
+		String newDescription = description.replaceAll("\'", "");
 
-				+ "WHERE ID=?;"
-				;
+		String query = "UPDATE product" + "SET NAME = ?" + "PRICE = ?" + "IMAGE = ?" + "shortDescription =?"
+				+ "description = ?" + "category = ?"
+
+				+ "WHERE ID=?;";
 		try {
 			conn = new DBContext().getMySQLConnection();// mo ket noi voi sql
 			ps = conn.prepareStatement(query);
 			ps.setString(1, newName);
 			ps.setDouble(2, price);
-			ps.setString(3,image );
+			ps.setString(3, image);
 			ps.setString(4, newShortDescription);
 			ps.setString(5, newDescription);
 			ps.setInt(6, category);
 			ps.setString(7, pid);
-
 
 			ps.executeUpdate();
 		} catch (Exception e) {
@@ -307,12 +304,12 @@ public class DAO {
 		}
 	}
 	/*------------------------------
-	 * End Product method
-	 * ------------------------------*/
+	* End Product method
+	* ------------------------------*/
 
 	/*------------------------------
-	 * Start Category method
-	 * ------------------------------*/
+	* Start Category method
+	* ------------------------------*/
 
 	// Get Category By Product ID
 	public Category getCategoryByProductID(String id) {
@@ -363,35 +360,29 @@ public class DAO {
 		return list;
 	}
 	/*------------------------------
-	 * End Category method
-	 * ------------------------------*/
+	* End Category method
+	* ------------------------------*/
 
-	public void editProductName(String name, String price,String image,String shortDescription,String description,String category,String pid) {
+	public void editProductName(String name, String price, String image, String shortDescription, String description,
+			String category, String pid) {
 
-		//remove quote
-		String newName=name.replaceAll("\'", "");
-		String newShortDescription=shortDescription.replaceAll("\'", "");
-		String newDescription=description.replaceAll("\'", "");
+		// remove quote
+		String newName = name.replaceAll("\'", "");
+		String newShortDescription = shortDescription.replaceAll("\'", "");
+		String newDescription = description.replaceAll("\'", "");
 
-		String query = "UPDATE product\r\n"
-				+ "SET NAME = ?,"
-				+ "PRICE = ?,"
-				+ "IMAGE = ?,"
-				+ "shortDescription = ?,"
-				+ "description = ?,"
-				+ "cID = ?"
-				+ "WHERE ID=?;";
+		String query = "UPDATE product\r\n" + "SET NAME = ?," + "PRICE = ?," + "IMAGE = ?," + "shortDescription = ?,"
+				+ "description = ?," + "cID = ?" + "WHERE ID=?;";
 		try {
 			conn = new DBContext().getMySQLConnection();// mo ket noi voi sql
 			ps = conn.prepareStatement(query);
 			ps.setString(1, newName);
 			ps.setDouble(2, Double.parseDouble(price));
-			ps.setString(3,image );
+			ps.setString(3, image);
 			ps.setString(4, newShortDescription);
 			ps.setString(5, newDescription);
 			ps.setString(6, category);
 			ps.setString(7, pid);
-
 
 			ps.executeUpdate();
 			System.out.println("Complete");
@@ -403,13 +394,13 @@ public class DAO {
 
 	public static void main(String[] args) {
 		DAO dao = new DAO();
-		Product p1 = dao.getProductByID("2");
-		Category c = dao.getCategoryByProductID(String.valueOf(p1.getcID()) );
-		System.out.println(c.toString());
-//		dao.editProductName("asdasdasd","200","a","a","a","2","18");
+//		Product p1 = dao.getProductByID("2");
+//		Category c = dao.getCategoryByProductID(String.valueOf(p1.getcID()) );
+//		System.out.println(c.toString());
+//		dao.editProductName("asdasdasd", "200", "a", "a", "a", "2", "18");
 
-//
-//
+//		
+//		
 //		List<Product> listP = dao.getProductBySellID(3);
 //		List<Category> listC = dao.getAllCategory();
 //		Account a1 = dao.login("thai", "123");
