@@ -1,16 +1,19 @@
 package control;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.DAO;
+import entity.Cart;
 import entity.Category;
 import entity.Product;
 
@@ -33,31 +36,23 @@ public class CartControl extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		String id = request.getParameter("id");
-		Cookie arr[] = request.getCookies();
-		String txt = "";
-		for (Cookie o : arr) {
-			if (o.getName().equals("id")) {
-				txt = txt + o.getValue();
-				o.setMaxAge(0);
-				response.addCookie(o);
-			}
-		}
-		if (txt.isEmpty()) {
-			txt = id;
-		} else {
-			txt = txt + "," + id;
-		}
-		Cookie c = new Cookie("id", txt);
-		c.setMaxAge(60 * 60 * 24);
-		response.addCookie(c);
-		response.sendRedirect("print");
+		DAO dao = new DAO();
+		HttpSession session = request.getSession();
+		Cart cart = Cart.getCart(session);
 
+		double total = cart.total();
+
+		Collection<Product> data = cart.getData();
+		request.setAttribute("data", data);
+		List<Category> listCate = dao.getAllCategory();
+		request.setAttribute("listCate", listCate);
+		request.setAttribute("total", total);
+
+		request.getRequestDispatcher("/views/cart.jsp").forward(request, response);
 	}
 
 	/**
@@ -69,7 +64,5 @@ public class CartControl extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
-
 
 }

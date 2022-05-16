@@ -78,7 +78,7 @@
 					<li><a href="#" data-toggle="modal" data-target="#modalSearch">
 							Search </a></li>
 
-					<li class=" nk-drop-item"><a href="#"> Category </a>
+					<li class=" nk-drop-item"><a href="category"> Category </a>
 						<ul class="dropdown">
 							<c:forEach var="cate" items="${listCate}">
 								<li><a href="category?cid=${cate.cid}" name="${cate.cid}">
@@ -86,7 +86,7 @@
 							</c:forEach>
 						</ul></li>
 
-					<li><a href="print"> Cart </a></li>
+					<li><a href="cart"> Cart </a></li>
 					<li><a href="checkout"> Checkout </a></li>
 
 

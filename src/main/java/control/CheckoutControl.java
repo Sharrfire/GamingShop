@@ -1,60 +1,61 @@
 package control;
 
-import java.io.IOException;
-import java.util.List;
+import dao.DAO;
+import entity.Cart;
+import entity.Category;
+import entity.Product;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import dao.DAO;
-import entity.Category;
-import entity.Product;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 /**
- * Servlet implementation class CheckoutControl
+ * Servlet implementation class CartControl
  */
 @WebServlet("/checkout")
 public class CheckoutControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public CheckoutControl() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
 		DAO dao = new DAO();
 
 		List<Category> listCate = dao.getAllCategory();
-	
 
-		// b2: set data to jsp
+		HttpSession session = request.getSession();
+		Cart cart = Cart.getCart(session);
+
+		double total = cart.total();
+
+		Collection<Product> data = cart.getData();
+		request.setAttribute("data", data);
+		request.setAttribute("listCate", listCate);
+		request.setAttribute("total", total);
+
+
 
 		request.setAttribute("listCate", listCate);
 		request.getRequestDispatcher("/views/checkout.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
 
 }
