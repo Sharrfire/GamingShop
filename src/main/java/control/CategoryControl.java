@@ -30,47 +30,116 @@ public class CategoryControl extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 * response)
+	 *      response)
 	 */
+//	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+//			throws ServletException, IOException {
+//		String cateID = request.getParameter("cid");
+//		if (cateID == null) {
+//			doGet_DisplayAll(request, response);
+//		} else {
+//			DAO dao = new DAO();
+//			int numberPage = dao.getNumberPage();
+//			List<Category> listCate = dao.getAllCategory();
+//			List<Product> listProductByID = dao.getProductByCID(cateID);
+//			Category c = dao.getCategoryByID(cateID);
+//			// b2: set data to jsp
+//			request.setAttribute("numberPage", numberPage);
+//			request.setAttribute("listProductByID", listProductByID);
+//			request.setAttribute("cate", c);
+//			request.setAttribute("listCate", listCate);
+//			request.getRequestDispatcher("/views/category.jsp").forward(request, response);
+//		}
+//
+//	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String cateID = request.getParameter("cid");
-		if (cateID == null) {
+		String pageIndex = request.getParameter("index");
+
+		if (pageIndex == null)
+			pageIndex = "1";
+		int id = Integer.parseInt(pageIndex);
+		if ( cateID == null) {
 			doGet_DisplayAll(request, response);
+
 		} else {
 			DAO dao = new DAO();
+			int numberPage = dao.getNumberPage();
 			List<Category> listCate = dao.getAllCategory();
-			List<Product> listProductByID = dao.getProductByCID(cateID);
+			List<Product> listProductByID = dao.getByIdPaginProduct(cateID, id);
 			Category c = dao.getCategoryByID(cateID);
 			// b2: set data to jsp
+			request.setAttribute("numberPage", numberPage);
 			request.setAttribute("listProductByID", listProductByID);
 			request.setAttribute("cate", c);
 			request.setAttribute("listCate", listCate);
+			request.setAttribute("pageIndex", pageIndex);
+			request.setAttribute("cateID", cateID);
+
 			request.getRequestDispatcher("/views/category.jsp").forward(request, response);
 		}
-
 
 	}
 
 	protected void doGet_DisplayAll(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		DAO dao = new DAO();
-		List<Product> listProductByID = dao.getAllProduct();
+		String pageIndex = request.getParameter("index");
+
+		if (pageIndex == null)
+			pageIndex = "1";
+		int id = Integer.parseInt(pageIndex);
+		int numberPage = dao.getNumberPage();
+		List<Product> listProductByID = dao.getAllPaginProduct(id);
 		List<Category> listCate = dao.getAllCategory();
 		request.setAttribute("listCate", listCate);
 		request.setAttribute("listProductByID", listProductByID);
+		request.setAttribute("numberPage", numberPage);
+		request.setAttribute("pageIndex", pageIndex);
 
 		request.getRequestDispatcher("views/category.jsp").forward(request, response);
 	}
 
+//	protected void doGet_DisplayAll(HttpServletRequest request, HttpServletResponse response)
+//			throws ServletException, IOException {
+//
+//		DAO dao = new DAO();
+//		String pageIndex = request.getParameter("index");
+//
+//		if (pageIndex == null)
+//			pageIndex = "1";
+//		int id = Integer.parseInt(pageIndex);
+//		int numberPage = dao.getNumberPage();
+//
+//		List<Product> listProductByID = dao.getAllProduct();
+//		List<Category> listCate = dao.getAllCategory();
+//		request.setAttribute("listCate", listCate);
+//		request.setAttribute("listProductByID", listProductByID);
+//		request.setAttribute("numberPage", numberPage);
+//
+//		request.getRequestDispatcher("views/category.jsp").forward(request, response);
+//	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 * response)
+	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+
+	public static void main(String[] args) {
+		DAO dao = new DAO();
+//	Product p1 = dao.getProductByID("1");
+		List<Product> listP = dao.getAllPaginProduct(1);
+
+		for (Product p : listP) {
+			System.out.println(p.toString());
+		}
 	}
 
 }

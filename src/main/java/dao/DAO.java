@@ -18,15 +18,16 @@ public class DAO {
 	PreparedStatement ps = null;
 	ResultSet rs = null;
 
-	/*------------------------------
-	* Start Account method
-	* ------------------------------*/
+	/*------------------------------ ----------------------------- ----------------------------- -----------------------------
+	 *  ----------------------------- -----------------------------Start Account method ----------------------------- -----------------------------
+	 * ------------------------------ ----------------------------- ----------------------------- -----------------------------*/
 
 	// Get Account
 	public Account login(String username, String pass) {
 		String query = "SELECT * from account WHERE username=? AND pass=?";
 		try {
-			conn = new DBContext().getMySQLConnection();// mo ket noi voi sql
+			new DBContext();
+			conn = DBContext.getMySQLConnection();// mo ket noi voi sql
 			ps = conn.prepareStatement(query);
 			ps.setString(1, username);
 			ps.setString(2, pass);
@@ -44,7 +45,8 @@ public class DAO {
 	public boolean checkLogin(String username, String pass) {
 		String query = "SELECT * from account WHERE username=? AND pass=?";
 		try {
-			conn = new DBContext().getMySQLConnection();// mo ket noi voi sql
+			new DBContext();
+			conn = DBContext.getMySQLConnection();// mo ket noi voi sql
 			ps = conn.prepareStatement(query);
 			ps.setString(1, username);
 			ps.setString(2, pass);
@@ -80,7 +82,8 @@ public class DAO {
 	public void signup(String username, String pass) {
 		String query = "INSERT into account (username,pass,isSell,isAdmin)  VALUES (?,?,0, 0)";
 		try {
-			conn = new DBContext().getMySQLConnection();// mo ket noi voi sql
+			new DBContext();
+			conn = DBContext.getMySQLConnection();// mo ket noi voi sql
 			ps = conn.prepareStatement(query);
 			ps.setString(1, username);
 			ps.setString(2, pass);
@@ -90,20 +93,21 @@ public class DAO {
 		}
 	}
 
-	/*------------------------------
-	 * End Account method
-	 * ------------------------------*/
+	/*------------------------------ ----------------------------- ----------------------------- -----------------------------
+	 *  ----------------------------- -----------------------------End Account method ----------------------------- -----------------------------
+	 * ------------------------------ ----------------------------- ----------------------------- -----------------------------*/
 
-	/*------------------------------
-	* Start Product method
-	* ------------------------------*/
+	/*------------------------------ ----------------------------- ----------------------------- -----------------------------
+	 *  ----------------------------- -----------------------------Start Product method ----------------------------- -----------------------------
+	 * ------------------------------ ----------------------------- ----------------------------- -----------------------------*/
 
 	// Get All
 	public List<Product> getAllProduct() {
 		List<Product> list = new ArrayList<Product>();
 		String query = "select * from product";
 		try {
-			conn = new DBContext().getMySQLConnection();// mo ket noi voi sql
+			new DBContext();
+			conn = DBContext.getMySQLConnection();// mo ket noi voi sql
 			ps = conn.prepareStatement(query);
 			rs = ps.executeQuery();
 			while (rs.next()) {
@@ -137,7 +141,8 @@ public class DAO {
 		List<Product> list = new ArrayList<Product>();
 		String query = "SELECT * FROM product ORDER BY RAND() LIMIT 5";
 		try {
-			conn = new DBContext().getMySQLConnection();// mo ket noi voi sql
+			new DBContext();
+			conn = DBContext.getMySQLConnection();// mo ket noi voi sql
 			ps = conn.prepareStatement(query);
 			rs = ps.executeQuery();
 			while (rs.next()) {
@@ -154,7 +159,8 @@ public class DAO {
 		List<Product> list = new ArrayList<Product>();
 		String query = "SELECT * FROM product  ORDER BY ID  DESC LIMIT 12";
 		try {
-			conn = new DBContext().getMySQLConnection();// mo ket noi voi sql
+			new DBContext();
+			conn = DBContext.getMySQLConnection();// mo ket noi voi sql
 			ps = conn.prepareStatement(query);
 			rs = ps.executeQuery();
 			while (rs.next()) {
@@ -171,7 +177,8 @@ public class DAO {
 		List<Product> list = new ArrayList<Product>();
 		String query = "SELECT * FROM product WHERE CID = ?";
 		try {
-			conn = new DBContext().getMySQLConnection();// mo ket noi voi sql
+			new DBContext();
+			conn = DBContext.getMySQLConnection();// mo ket noi voi sql
 			ps = conn.prepareStatement(query);
 			ps.setString(1, cid);
 			rs = ps.executeQuery();
@@ -189,7 +196,8 @@ public class DAO {
 		List<Product> list = new ArrayList<Product>();
 		String query = "SELECT * FROM product WHERE sell_ID = ?";
 		try {
-			conn = new DBContext().getMySQLConnection();// mo ket noi voi sql
+			new DBContext();
+			conn = DBContext.getMySQLConnection();// mo ket noi voi sql
 			ps = conn.prepareStatement(query);
 			ps.setInt(1, id);
 			rs = ps.executeQuery();
@@ -207,7 +215,8 @@ public class DAO {
 		List<Product> list = new ArrayList<Product>();
 		String query = "SELECT * FROM product WHERE name LIKE ?";
 		try {
-			conn = new DBContext().getMySQLConnection();// mo ket noi voi sql
+			new DBContext();
+			conn = DBContext.getMySQLConnection();// mo ket noi voi sql
 			ps = conn.prepareStatement(query);
 			ps.setString(1, "%" + txtSearch + "%");
 			rs = ps.executeQuery();
@@ -220,17 +229,37 @@ public class DAO {
 		return list;
 	}
 
+//	// Get Product by ID
+//	public Product getProductByID(String id) {
+//		String query = "SELECT * FROM product WHERE ID = ?";
+//		try {
+//			conn = new DBContext().getMySQLConnection();// mo ket noi voi sql
+//			ps = conn.prepareStatement(query);
+//			ps.setString(1, id);
+//			rs = ps.executeQuery();
+//			while (rs.next()) {
+//				return new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getString(5),
+//						rs.getString(6), rs.getInt(7), rs.getInt(8));
+//			}
+//		} catch (Exception e) {
+//		}
+//		return null;
+//	}
+
 	// Get Product by ID
 	public Product getProductByID(String id) {
 		String query = "SELECT * FROM product WHERE ID = ?";
 		try {
-			conn = new DBContext().getMySQLConnection();// mo ket noi voi sql
+			new DBContext();
+			conn = DBContext.getMySQLConnection();// mo ket noi voi sql
 			ps = conn.prepareStatement(query);
 			ps.setString(1, id);
 			rs = ps.executeQuery();
+			Product p;
 			while (rs.next()) {
-				return new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getString(5),
+				p = new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getString(5),
 						rs.getString(6), rs.getInt(7), rs.getInt(8));
+				return p;
 			}
 		} catch (Exception e) {
 		}
@@ -239,7 +268,7 @@ public class DAO {
 
 	// Insert Product by ID
 	public void insertProduct(String name, double price, String image, String shortDescription, String description,
-			int soldAmount, int category, int sID) {
+							  int soldAmount, int category, int sID) {
 		// remove quote
 		String newName = name.replaceAll("\'", "");
 		String newShortDescription = shortDescription.replaceAll("\'", "");
@@ -248,7 +277,8 @@ public class DAO {
 		String query = "Insert into PRODUCT (NAME, PRICE,IMAGE,shortDescription,description,soldAmount,cID,sell_ID)values ( ?, ?, ?,?,?,?,?,?);"
 				+ "";
 		try {
-			conn = new DBContext().getMySQLConnection();// mo ket noi voi sql
+			new DBContext();
+			conn = DBContext.getMySQLConnection();// mo ket noi voi sql
 			ps = conn.prepareStatement(query);
 			ps.setString(1, newName);
 			ps.setDouble(2, price);
@@ -266,7 +296,7 @@ public class DAO {
 
 	// Edit Product by ID
 	public void editProduct(String name, double price, String image, String shortDescription, String description,
-			int category, String pid) {
+							int category, String pid) {
 		// remove quote
 		String newName = name.replaceAll("\'", "");
 		String newShortDescription = shortDescription.replaceAll("\'", "");
@@ -277,7 +307,8 @@ public class DAO {
 
 				+ "WHERE ID=?;";
 		try {
-			conn = new DBContext().getMySQLConnection();// mo ket noi voi sql
+			new DBContext();
+			conn = DBContext.getMySQLConnection();// mo ket noi voi sql
 			ps = conn.prepareStatement(query);
 			ps.setString(1, newName);
 			ps.setDouble(2, price);
@@ -296,75 +327,17 @@ public class DAO {
 	public void deleteProduct(String pid) {
 		String query = "DELETE  FROM product WHERE id= ?";
 		try {
-			conn = new DBContext().getMySQLConnection();// mo ket noi voi sql
+			new DBContext();
+			conn = DBContext.getMySQLConnection();// mo ket noi voi sql
 			ps = conn.prepareStatement(query);
 			ps.setString(1, pid);
 			ps.executeUpdate();
 		} catch (Exception e) {
 		}
 	}
-	/*------------------------------
-	* End Product method
-	* ------------------------------*/
-
-	/*------------------------------
-	* Start Category method
-	* ------------------------------*/
-
-	// Get Category By Product ID
-	public Category getCategoryByProductID(String id) {
-		String query = "SELECT * FROM category INNER JOIN product WHERE product.cID=?  and  product.cID=category.cID limit 1";
-		try {
-			conn = new DBContext().getMySQLConnection();// mo ket noi voi sql
-			ps = conn.prepareStatement(query);
-			ps.setString(1, id);
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				return new Category(rs.getInt(1), rs.getString(2));
-
-			}
-		} catch (Exception e) {
-		}
-		return null;
-	}
-
-	// Get CategoryByID
-	public Category getCategoryByID(String cid) {
-		String query = "SELECT * from Category WHERE cid=?";
-		try {
-			conn = new DBContext().getMySQLConnection();// mo ket noi voi sql
-			ps = conn.prepareStatement(query);
-			ps.setString(1, cid);
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				return new Category(rs.getInt(1), rs.getString(2));
-			}
-		} catch (Exception e) {
-		}
-		return null;
-	}
-
-	// Get All Category
-	public List<Category> getAllCategory() {
-		List<Category> list = new ArrayList<>();
-		String query = "select * from Category";
-		try {
-			conn = new DBContext().getMySQLConnection();// mo ket noi voi sql
-			ps = conn.prepareStatement(query);
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				list.add(new Category(rs.getInt(1), rs.getString(2)));
-			}
-		} catch (Exception e) {
-		}
-		return list;
-	}
-	/*------------------------------
-	* End Category method
-	* ------------------------------*/
 
 	public void editProductName(String name, String price, String image, String shortDescription, String description,
-			String category, String pid) {
+								String category, String pid) {
 
 		// remove quote
 		String newName = name.replaceAll("\'", "");
@@ -374,7 +347,8 @@ public class DAO {
 		String query = "UPDATE product\r\n" + "SET NAME = ?," + "PRICE = ?," + "IMAGE = ?," + "shortDescription = ?,"
 				+ "description = ?," + "cID = ?" + "WHERE ID=?;";
 		try {
-			conn = new DBContext().getMySQLConnection();// mo ket noi voi sql
+			new DBContext();
+			conn = DBContext.getMySQLConnection();// mo ket noi voi sql
 			ps = conn.prepareStatement(query);
 			ps.setString(1, newName);
 			ps.setDouble(2, Double.parseDouble(price));
@@ -391,24 +365,174 @@ public class DAO {
 
 		}
 	}
+	/*------------------------------ ----------------------------- ----------------------------- -----------------------------
+	 *  ----------------------------- -----------------------------End Product method ----------------------------- -----------------------------
+	 * ------------------------------ ----------------------------- ----------------------------- -----------------------------*/
+
+	/*------------------------------ ----------------------------- ----------------------------- -----------------------------
+	 *  ----------------------------- -----------------------------Start Category method ----------------------------- -----------------------------
+	 * ------------------------------ ----------------------------- ----------------------------- -----------------------------*/
+
+	// Get Category By Product ID
+	public Category getCategoryByProductID(String id) {
+		String query = "SELECT * FROM category INNER JOIN product WHERE product.cID=?  and  product.cID=category.cID limit 1";
+		try {
+			new DBContext();
+			conn = DBContext.getMySQLConnection();// mo ket noi voi sql
+			ps = conn.prepareStatement(query);
+			ps.setString(1, id);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				return new Category(rs.getInt(1), rs.getString(2));
+
+			}
+		} catch (Exception e) {
+		}
+		return null;
+	}
+
+	// Get CategoryByID
+	public Category getCategoryByID(String cid) {
+		String query = "SELECT * from Category WHERE cid=?";
+		try {
+			new DBContext();
+			conn = DBContext.getMySQLConnection();// mo ket noi voi sql
+			ps = conn.prepareStatement(query);
+			ps.setString(1, cid);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				return new Category(rs.getInt(1), rs.getString(2));
+			}
+		} catch (Exception e) {
+		}
+		return null;
+	}
+
+	// Get All Category
+	public List<Category> getAllCategory() {
+		List<Category> list = new ArrayList<>();
+		String query = "select * from Category";
+		try {
+			new DBContext();
+			conn = DBContext.getMySQLConnection();// mo ket noi voi sql
+			ps = conn.prepareStatement(query);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				list.add(new Category(rs.getInt(1), rs.getString(2)));
+			}
+		} catch (Exception e) {
+		}
+		return list;
+	}
+
+	/*------------------------------ ----------------------------- ----------------------------- -----------------------------
+	 *  ----------------------------- -----------------------------End Category method ----------------------------- -----------------------------
+	 * ------------------------------ ----------------------------- ----------------------------- -----------------------------*/
+
+	/*------------------------------ ----------------------------- ----------------------------- -----------------------------
+	 *  ----------------------------- -----------------------------Start Pagination method ----------------------------- -----------------------------
+	 * ------------------------------ ----------------------------- ----------------------------- -----------------------------*/
+	public int getNumberPage() {
+
+		String query = "SELECT COUNT(*) FROM product";
+		try {
+			new DBContext();
+			conn = DBContext.getMySQLConnection();// mo ket noi voi sql
+			ps = conn.prepareStatement(query);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				int total = rs.getInt(1);
+				int countPage = 0;
+				countPage = total / 12;
+				if(total%5!=0) {
+					countPage++;
+				}
+				return	countPage;
+			}
+		} catch (Exception e) {
+		}
+		return 0;
+	}
+	public List<Product> getPaging(int index) {
+		List<Product> list = new ArrayList<Product>();
+		String query = " SELECT *  FROM product ORDER BY ID ASC LIMIT ?,5;";
+
+		try {
+			new DBContext();
+			conn = DBContext.getMySQLConnection();// mo ket noi voi sql
+			ps = conn.prepareStatement(query);
+			ps.setInt(1, (index-1)*12);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				list.add(new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getString(5),
+						rs.getString(6), rs.getInt(7), rs.getInt(8)));
+			}
+		} catch (Exception e) {
+		}
+		return list;
+	}
+	// Get All
+	public List<Product> getAllPaginProduct(int index) {
+		List<Product> list = new ArrayList<Product>();
+		String query = "select * from product limit ?,12";
+		try {
+			new DBContext();
+			conn = DBContext.getMySQLConnection();// mo ket noi voi sql
+			ps = conn.prepareStatement(query);
+			ps.setInt(1, (index-1)*12);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				list.add(new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getString(5),
+						rs.getString(6), rs.getInt(7), rs.getInt(8)));
+			}
+		} catch (Exception e) {
+		}
+		return list;
+	}
+	public List<Product> getByIdPaginProduct(String cid,int index) {
+		List<Product> list = new ArrayList<Product>();
+		String query = "select * from product where cid=? limit ?,12";
+		try {
+			new DBContext();
+			conn = DBContext.getMySQLConnection();// mo ket noi voi sql
+			ps = conn.prepareStatement(query);
+			ps.setString(1, cid);
+			ps.setInt(2, (index-1)*12);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				list.add(new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getString(5),
+						rs.getString(6), rs.getInt(7), rs.getInt(8)));
+			}
+		} catch (Exception e) {
+		}
+		return list;
+	}
+
+	/*------------------------------ ----------------------------- ----------------------------- -----------------------------
+	 *  ----------------------------- -----------------------------End Pagination method ----------------------------- -----------------------------
+	 * ------------------------------ ----------------------------- ----------------------------- -----------------------------*/
 
 	public static void main(String[] args) {
 		DAO dao = new DAO();
-//		Product p1 = dao.getProductByID("2");
-//		Category c = dao.getCategoryByProductID(String.valueOf(p1.getcID()) );
+//		Product p1 = dao.getProductByID("1");
+		List<Product> listP = dao.getByIdPaginProduct("3",1);
+
+		for (Product p : listP) {
+			System.out.println(p.toString());
+		}
+//		System.out.println(p1.toString());
+//		Category c = dao.getCategoryByProductID(String.valueOf(p1.getcID()));
+//
 //		System.out.println(c.toString());
 //		dao.editProductName("asdasdasd", "200", "a", "a", "a", "2", "18");
 
-//		
-//		
-//		List<Product> listP = dao.getProductBySellID(3);
+//
+//
 //		List<Category> listC = dao.getAllCategory();
 //		Account a1 = dao.login("thai", "123");
 //		System.out.println(p1.toString());
 
-//		for (Product p : listP) {
-//			System.out.println(p.toString());
-//		}
+
 //        for (Category cate : listC) {
 //            System.out.println(c.toString());
 //        }
