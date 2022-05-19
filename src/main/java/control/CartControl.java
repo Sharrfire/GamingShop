@@ -45,12 +45,14 @@ public class CartControl extends HttpServlet {
 		Cart cart = Cart.getCart(session);
 
 		double total = cart.total();
-
 		Collection<Product> data = cart.getData();
+		boolean checkData= data.isEmpty();
 		request.setAttribute("data", data);
 		List<Category> listCate = dao.getAllCategory();
 		request.setAttribute("listCate", listCate);
 		request.setAttribute("total", total);
+		request.setAttribute("check", checkData);
+
 
 		request.getRequestDispatcher("/views/cart.jsp").forward(request, response);
 	}

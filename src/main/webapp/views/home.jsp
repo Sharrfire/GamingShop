@@ -52,6 +52,8 @@
 </head>
 
 <jsp:include page="header.jsp"></jsp:include>
+												<p class="text-danger">${mess}</p>
+
 <body>
 
 	<div class="nk-main">
@@ -230,7 +232,7 @@
 				<c:forEach var="o" items="${listLatest}">
 					<div class="col-lg-4 col-md-6">
 						<div class="nk-product-cat">
-							<a class="nk-product-image" href="product"> <img  style="width: 115px; height: 155px"
+							<a class="nk-product-image" href="product?id=${o.id}"> <img  style="width: 115px; height: 155px"
 								src="${o.image}" alt="${o.name}r">
 							</a>
 							<div class="nk-product-cont">

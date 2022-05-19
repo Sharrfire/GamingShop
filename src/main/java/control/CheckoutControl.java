@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -31,6 +31,7 @@ public class CheckoutControl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+
 		DAO dao = new DAO();
 
 		List<Category> listCate = dao.getAllCategory();
@@ -41,14 +42,23 @@ public class CheckoutControl extends HttpServlet {
 		double total = cart.total();
 
 		Collection<Product> data = cart.getData();
-		request.setAttribute("data", data);
-		request.setAttribute("listCate", listCate);
-		request.setAttribute("total", total);
+		boolean checkData = data.isEmpty();
+
+		if (data.isEmpty()) {
+			request.setAttribute("mess", "Your cart is empty");
+			request.setAttribute("listCate", listCate);
+			request.setAttribute("check", checkData);
+			request.getRequestDispatcher("/views/cart.jsp").forward(request, response);
+		} else {
 
 
+			request.setAttribute("data", data);
+			request.setAttribute("total", total);
+			request.setAttribute("listCate", listCate);
+			request.getRequestDispatcher("/views/checkout.jsp").forward(request, response);
 
-		request.setAttribute("listCate", listCate);
-		request.getRequestDispatcher("/views/checkout.jsp").forward(request, response);
+		}
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -56,6 +66,5 @@ public class CheckoutControl extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 
 }

@@ -21,14 +21,14 @@ import entity.Product;
 @WebServlet("/productManager")
 public class ProductManagerControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ProductManagerControl() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ProductManagerControl() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -37,15 +37,37 @@ public class ProductManagerControl extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session= request.getSession();
 		Account a= (Account) session.getAttribute("acc");
-		int id= a.getId();
-		DAO dao = new DAO();
-		List<Product> listP= dao.getProductBySellID(id);
-		List<Category> listCC= dao.getAllCategory();
 
-		request.setAttribute("listP", listP);
-		request.setAttribute("listCC", listCC);
+		if(a == null) {
+			DAO dao = new DAO();
+			List<Product> list = dao.getAllProduct();
+			List<Product> listT10 = dao.getTop10Product();
+			List<Product> listGOTY = dao.getGOTY();
+			List<Product> listLatest = dao.getLast();
+			List<Category> listCate = dao.getAllCategory();
 
-		request.getRequestDispatcher("/views/ManagerProduct.jsp").forward(request, response);
+			// b2: set data to jsp
+			request.setAttribute("listP", list);
+			request.setAttribute("listT10", listT10);
+			request.setAttribute("listGOTY", listGOTY);
+			request.setAttribute("listLatest", listLatest);
+			request.setAttribute("listCate", listCate);
+			request.setAttribute("mess", "Back to home!");
+			request.getRequestDispatcher("/views/home.jsp").forward(request, response);
+		}else {
+
+
+			int id= a.getId();
+			DAO dao = new DAO();
+			List<Product> listP= dao.getProductBySellID(id);
+			List<Category> listCC= dao.getAllCategory();
+
+			request.setAttribute("listP", listP);
+			request.setAttribute("listCC", listCC);
+
+			request.getRequestDispatcher("/views/ManagerProduct.jsp").forward(request, response);
+		}
+
 	}
 
 	/**

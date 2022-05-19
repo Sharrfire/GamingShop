@@ -144,7 +144,9 @@
                           <button class="nk-btn nk-btn-rounded nk-btn-color-main-1">Add to Cart</button>
                          -->
 										<button class="nk-btn nk-btn-rounded nk-btn-color-main-1">
-											<a class="add-to-cart-button" href="cart?id=${p.id}">Add
+<%--											<a class="add-to-cart-button" href="cart?id=${p.id}">Add--%>
+<%--												to Cart</a>--%>
+											<a class="add-to-cart-button" href="addCart?id=${p.id }">Add
 												to Cart</a>
 										</button>
 
