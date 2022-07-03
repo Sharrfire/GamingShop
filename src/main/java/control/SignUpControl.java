@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.CategoryDAO;
 import dao.DAO;
 import entity.Account;
 import entity.Category;
@@ -37,7 +38,9 @@ public class SignUpControl extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		DAO dao = new DAO();
-		List<Category> listCate = dao.getAllCategory();
+		CategoryDAO cdao = new CategoryDAO();
+
+		List<Category> listCate = cdao.getAllCategory();
 		request.setAttribute("listCate", listCate);
 
 		String username = request.getParameter("username");

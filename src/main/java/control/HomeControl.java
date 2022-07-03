@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.CategoryDAO;
 import dao.DAO;
 import entity.Product;
 import entity.Category;
@@ -23,11 +24,12 @@ public class HomeControl extends HttpServlet {
 			throws ServletException, IOException {
 		// b1: get data from dao
 		DAO dao = new DAO();
+		CategoryDAO cdao= new CategoryDAO();
 		List<Product> list = dao.getAllProduct();
 		List<Product> listT10 = dao.getTop10Product();
 		List<Product> listGOTY = dao.getGOTY();
 		List<Product> listLatest = dao.getLast();
-		List<Category> listCate = dao.getAllCategory();
+		List<Category> listCate = cdao.getAllCategory();
 
 		// b2: set data to jsp
 		request.setAttribute("listP", list);

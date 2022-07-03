@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.CategoryDAO;
 import dao.DAO;
 import entity.Category;
 import entity.Product;
@@ -65,10 +66,11 @@ public class CategoryControl extends HttpServlet {
 
 		} else {
 			DAO dao = new DAO();
+			CategoryDAO cdao = new CategoryDAO() ;
 			int numberPage = dao.getNumberPage();
-			List<Category> listCate = dao.getAllCategory();
+			List<Category> listCate = cdao.getAllCategory();
 			List<Product> listProductByID = dao.getByIdPaginProduct(cateID, id);
-			Category c = dao.getCategoryByID(cateID);
+			Category c = cdao.getCategoryByID(cateID);
 			// b2: set data to jsp
 			request.setAttribute("numberPage", numberPage);
 			request.setAttribute("listProductByID", listProductByID);
@@ -86,6 +88,7 @@ public class CategoryControl extends HttpServlet {
 			throws ServletException, IOException {
 
 		DAO dao = new DAO();
+		CategoryDAO cdao= new CategoryDAO();
 		String pageIndex = request.getParameter("index");
 
 		if (pageIndex == null)
@@ -93,7 +96,7 @@ public class CategoryControl extends HttpServlet {
 		int id = Integer.parseInt(pageIndex);
 		int numberPage = dao.getNumberPage();
 		List<Product> listProductByID = dao.getAllPaginProduct(id);
-		List<Category> listCate = dao.getAllCategory();
+		List<Category> listCate = cdao.getAllCategory();
 		request.setAttribute("listCate", listCate);
 		request.setAttribute("listProductByID", listProductByID);
 		request.setAttribute("numberPage", numberPage);

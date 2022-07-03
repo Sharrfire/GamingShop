@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.CategoryDAO;
 import dao.DAO;
 import entity.Cart;
 import entity.Category;
@@ -41,6 +42,7 @@ public class CartControl extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		DAO dao = new DAO();
+		CategoryDAO cdao = new CategoryDAO();
 		HttpSession session = request.getSession();
 		Cart cart = Cart.getCart(session);
 
@@ -48,7 +50,7 @@ public class CartControl extends HttpServlet {
 		Collection<Product> data = cart.getData();
 		boolean checkData= data.isEmpty();
 		request.setAttribute("data", data);
-		List<Category> listCate = dao.getAllCategory();
+		List<Category> listCate = cdao.getAllCategory();
 		request.setAttribute("listCate", listCate);
 		request.setAttribute("total", total);
 		request.setAttribute("check", checkData);

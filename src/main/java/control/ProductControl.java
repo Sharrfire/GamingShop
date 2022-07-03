@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.CategoryDAO;
 import dao.DAO;
 import entity.Category;
 import entity.Product;
@@ -40,10 +41,11 @@ public class ProductControl extends HttpServlet {
 		String pID = request.getParameter("id");
 		// b1: get data from dao
 		DAO dao = new DAO();
-		List<Category> listCate = dao.getAllCategory();
+		CategoryDAO cdao = new CategoryDAO();
+		List<Category> listCate = cdao.getAllCategory();
 		Product p = dao.getProductByID(pID);
 		String cID= String.valueOf(p.getcID());
-		Category c= dao.getCategoryByProductID(cID);
+		Category c= cdao.getCategoryByProductID(cID);
 		// b2: set data to jsp
 		request.setAttribute("c", c);
 		request.setAttribute("p", p);

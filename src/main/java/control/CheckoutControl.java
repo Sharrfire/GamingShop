@@ -1,5 +1,6 @@
 package control;
 
+import dao.CategoryDAO;
 import dao.DAO;
 import entity.Cart;
 import entity.Category;
@@ -33,8 +34,9 @@ public class CheckoutControl extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		DAO dao = new DAO();
+		CategoryDAO cdao = new CategoryDAO();
 
-		List<Category> listCate = dao.getAllCategory();
+		List<Category> listCate = cdao.getAllCategory();
 
 		HttpSession session = request.getSession();
 		Cart cart = Cart.getCart(session);

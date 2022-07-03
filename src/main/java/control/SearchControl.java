@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.CategoryDAO;
 import dao.DAO;
 import entity.Category;
 import entity.Product;
@@ -36,8 +37,10 @@ public class SearchControl extends HttpServlet {
 		// TODO Auto-generated method stub
 		String txtSearch= request.getParameter("txt");
 		DAO dao = new DAO();
+		CategoryDAO cdao = new CategoryDAO();
+
 		List<Product> list = dao.getProductByName(txtSearch);
-		List<Category> listCate = dao.getAllCategory();
+		List<Category> listCate = cdao.getAllCategory();
 		
 		request.setAttribute("listCate", listCate);
 		request.setAttribute("listProductByID", list);

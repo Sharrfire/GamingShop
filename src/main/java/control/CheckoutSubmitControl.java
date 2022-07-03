@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.CategoryDAO;
 import dao.DAO;
 import entity.Cart;
 import entity.Category;
@@ -39,6 +40,8 @@ public class CheckoutSubmitControl extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		DAO dao = new DAO();
+		CategoryDAO cdao = new CategoryDAO();
+
 		HttpSession session = request.getSession();
 		String fname = request.getParameter("fname");
 
@@ -47,7 +50,7 @@ public class CheckoutSubmitControl extends HttpServlet {
 		double total = cart.total();
 
 		Collection<Product> data = cart.getData();
-		List<Category> listCate = dao.getAllCategory();
+		List<Category> listCate = cdao.getAllCategory();
 
 
 			request.setAttribute("data", data);

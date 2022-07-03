@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.CategoryDAO;
 import dao.DAO;
 import entity.Account;
 import entity.Category;
@@ -38,7 +39,9 @@ public class LoginControl extends HttpServlet {
 		String username= request.getParameter("username");
 		String pass= request.getParameter("pass");
 		DAO dao= new DAO();
-		List<Category> listCate = dao.getAllCategory();
+		CategoryDAO cdao= new CategoryDAO();
+
+		List<Category> listCate = cdao.getAllCategory();
 		// b2: set data to jsp
 		request.setAttribute("listCate", listCate);
 		

@@ -369,65 +369,6 @@ public class DAO {
 	 *  ----------------------------- -----------------------------End Product method ----------------------------- -----------------------------
 	 * ------------------------------ ----------------------------- ----------------------------- -----------------------------*/
 
-	/*------------------------------ ----------------------------- ----------------------------- -----------------------------
-	 *  ----------------------------- -----------------------------Start Category method ----------------------------- -----------------------------
-	 * ------------------------------ ----------------------------- ----------------------------- -----------------------------*/
-
-	// Get Category By Product ID
-	public Category getCategoryByProductID(String id) {
-		String query = "SELECT * FROM category INNER JOIN product WHERE product.cID=?  and  product.cID=category.cID limit 1";
-		try {
-			new DBContext();
-			conn = DBContext.getMySQLConnection();// mo ket noi voi sql
-			ps = conn.prepareStatement(query);
-			ps.setString(1, id);
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				return new Category(rs.getInt(1), rs.getString(2));
-
-			}
-		} catch (Exception e) {
-		}
-		return null;
-	}
-
-	// Get CategoryByID
-	public Category getCategoryByID(String cid) {
-		String query = "SELECT * from Category WHERE cid=?";
-		try {
-			new DBContext();
-			conn = DBContext.getMySQLConnection();// mo ket noi voi sql
-			ps = conn.prepareStatement(query);
-			ps.setString(1, cid);
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				return new Category(rs.getInt(1), rs.getString(2));
-			}
-		} catch (Exception e) {
-		}
-		return null;
-	}
-
-	// Get All Category
-	public List<Category> getAllCategory() {
-		List<Category> list = new ArrayList<>();
-		String query = "select * from Category";
-		try {
-			new DBContext();
-			conn = DBContext.getMySQLConnection();// mo ket noi voi sql
-			ps = conn.prepareStatement(query);
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				list.add(new Category(rs.getInt(1), rs.getString(2)));
-			}
-		} catch (Exception e) {
-		}
-		return list;
-	}
-
-	/*------------------------------ ----------------------------- ----------------------------- -----------------------------
-	 *  ----------------------------- -----------------------------End Category method ----------------------------- -----------------------------
-	 * ------------------------------ ----------------------------- ----------------------------- -----------------------------*/
 
 	/*------------------------------ ----------------------------- ----------------------------- -----------------------------
 	 *  ----------------------------- -----------------------------Start Pagination method ----------------------------- -----------------------------
@@ -514,28 +455,7 @@ public class DAO {
 
 	public static void main(String[] args) {
 		DAO dao = new DAO();
-//		Product p1 = dao.getProductByID("1");
-		List<Product> listP = dao.getByIdPaginProduct("3",1);
 
-		for (Product p : listP) {
-			System.out.println(p.toString());
-		}
-//		System.out.println(p1.toString());
-//		Category c = dao.getCategoryByProductID(String.valueOf(p1.getcID()));
-//
-//		System.out.println(c.toString());
-//		dao.editProductName("asdasdasd", "200", "a", "a", "a", "2", "18");
-
-//
-//
-//		List<Category> listC = dao.getAllCategory();
-//		Account a1 = dao.login("thai", "123");
-//		System.out.println(p1.toString());
-
-
-//        for (Category cate : listC) {
-//            System.out.println(c.toString());
-//        }
 
 	}
 

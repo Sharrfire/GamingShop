@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.CategoryDAO;
 import dao.DAO;
 import entity.Account;
 import entity.Category;
@@ -40,11 +41,13 @@ public class ProductManagerControl extends HttpServlet {
 
 		if(a == null) {
 			DAO dao = new DAO();
+			CategoryDAO cdao = new CategoryDAO();
+
 			List<Product> list = dao.getAllProduct();
 			List<Product> listT10 = dao.getTop10Product();
 			List<Product> listGOTY = dao.getGOTY();
 			List<Product> listLatest = dao.getLast();
-			List<Category> listCate = dao.getAllCategory();
+			List<Category> listCate = cdao.getAllCategory();
 
 			// b2: set data to jsp
 			request.setAttribute("listP", list);
@@ -59,8 +62,9 @@ public class ProductManagerControl extends HttpServlet {
 
 			int id= a.getId();
 			DAO dao = new DAO();
+			CategoryDAO cdao= new CategoryDAO();
 			List<Product> listP= dao.getProductBySellID(id);
-			List<Category> listCC= dao.getAllCategory();
+			List<Category> listCC= cdao.getAllCategory();
 
 			request.setAttribute("listP", listP);
 			request.setAttribute("listCC", listCC);
