@@ -39,6 +39,8 @@ public class SendMailControl extends HttpServlet {
         String fname = request.getParameter("fname");
         String address = request.getParameter("address");
         String city = request.getParameter("city");
+        //Test
+        String city2 = request.getParameter("city");
 
 
         CategoryDAO cdao = new CategoryDAO();
