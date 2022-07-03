@@ -39,21 +39,18 @@ public class CartControl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
-		ProductDAO productDao = new ProductDAO();
 		CategoryDAO cdao = new CategoryDAO();
 		HttpSession session = request.getSession();
 		Cart cart = Cart.getCart(session);
-
 		double total = cart.total();
 		Collection<Product> data = cart.getData();
 		boolean checkData= data.isEmpty();
-		request.setAttribute("data", data);
 		List<Category> listCate = cdao.getAllCategory();
+
+		request.setAttribute("data", data);
 		request.setAttribute("listCate", listCate);
 		request.setAttribute("total", total);
 		request.setAttribute("check", checkData);
-
 
 		request.getRequestDispatcher("/views/cart.jsp").forward(request, response);
 	}

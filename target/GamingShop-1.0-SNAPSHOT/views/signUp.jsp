@@ -112,18 +112,18 @@
 						<p class="text-danger">${mess}</p>
 					
 						<label for="">Username <span class="text-main-1"></span>:
-						</label> <input type="text" value="" name="username" class=" form-control"
+						</label> <input type="text" value="" name="username" class="required form-control"
 							placeholder="">
 						<div class="nk-gap"></div>
 						<label for="">Password <span class="text-main-1"></span>:
 						</label> <input type="password" value="" name="pass"
-							class=" form-control" placeholder="">
+							class="required form-control" placeholder="">
 						<div class="nk-gap"></div>
 
 						<label for="">RePassword <span class="text-main-1"></span>:
 						</label> <input type="password" value="" name="repass"
-						
-							class=" form-control" placeholder="">
+										class="required form-control"
+						 placeholder="">
 						<div class="nk-gap"></div>
 
 						<button type="submit" value=""

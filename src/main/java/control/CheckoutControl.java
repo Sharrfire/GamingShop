@@ -33,34 +33,25 @@ public class CheckoutControl extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		ProductDAO productDao = new ProductDAO();
 		CategoryDAO cdao = new CategoryDAO();
-
 		List<Category> listCate = cdao.getAllCategory();
-
 		HttpSession session = request.getSession();
 		Cart cart = Cart.getCart(session);
-
 		double total = cart.total();
-
 		Collection<Product> data = cart.getData();
 		boolean checkData = data.isEmpty();
+		request.setAttribute("listCate", listCate);
 
+//Check Cart is empty
 		if (data.isEmpty()) {
 			request.setAttribute("mess", "Your cart is empty");
-			request.setAttribute("listCate", listCate);
 			request.setAttribute("check", checkData);
 			request.getRequestDispatcher("/views/cart.jsp").forward(request, response);
 		} else {
-
-
 			request.setAttribute("data", data);
 			request.setAttribute("total", total);
-			request.setAttribute("listCate", listCate);
 			request.getRequestDispatcher("/views/checkout.jsp").forward(request, response);
-
 		}
-
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

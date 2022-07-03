@@ -69,7 +69,7 @@
 			<div class="nk-gap"></div>
 									<p class="text-danger">${mess}</p>
 			
-			<form action="#" class="nk-form">
+			<form action="sendMail" class="nk-form" method="post">
 				<div class="row vertical-gap">
 				
 					<div class="col-lg-6">
@@ -114,32 +114,32 @@
 
 					</div>
 				</div>
-			</form>
-			<!-- END: Billing Details -->
+				<div class="nk-gap-2"></div>
+					<div class="nk-gap-1"></div>
+					<label for="notes">Order Notes:</label>
+					<textarea class="form-control" name="notes" id="notes"
+							  placeholder="Order Notes" rows="6"></textarea>
 
-			<div class="nk-gap-2"></div>
-			<form action="#" class="nk-form">
-				<div class="nk-gap-1"></div>
-				<label for="notes">Order Notes:</label>
-				<textarea class="form-control" name="notes" id="notes"
-					placeholder="Order Notes" rows="6"></textarea>
-			</form>
 
-			<!-- START: Order Products -->
-			<div class="nk-gap-3"></div>
-			<h3 class="nk-decorated-h-2">
-				<span><span class="text-main-1">Your</span> Order</span>
-			</h3>
-			<div class="nk-gap"></div>
-			<div class="table-responsive">
-				<table class="nk-table nk-table-sm">
-					<thead class="thead-default">
+				<div class="nk-gap-2"></div>
+
+
+
+				<!-- START: Order Products -->
+				<div class="nk-gap-3"></div>
+				<h3 class="nk-decorated-h-2">
+					<span><span class="text-main-1">Your</span> Order</span>
+				</h3>
+				<div class="nk-gap"></div>
+				<div class="table-responsive">
+					<table class="nk-table nk-table-sm">
+						<thead class="thead-default">
 						<tr>
 							<th class="nk-product-cart-title">Product</th>
 							<th class="nk-product-cart-total">Total</th>
 						</tr>
-					</thead>
-					<tbody>
+						</thead>
+						<tbody>
 
 						<c:forEach var="d" items="${data}">
 							<tr>
@@ -157,14 +157,31 @@
 							<td>Total</td>
 							<td>${total}$</td>
 						</tr>
-					</tbody>
-				</table>
-			</div>
-			<!-- END: Order Products -->
+						</tbody>
+					</table>
+				</div>
+				<!-- END: Order Products -->
+
+
+
+
+				<input type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1" value="Place Order">
+			</form>
+			<!-- END: Billing Details -->
+
+<%--			<div class="nk-gap-2"></div>--%>
+<%--			<form action="#" class="nk-form">--%>
+<%--				<div class="nk-gap-1"></div>--%>
+<%--				<label for="notes">Order Notes:</label>--%>
+<%--				<textarea class="form-control" name="notes" id="notes"--%>
+<%--					placeholder="Order Notes" rows="6"></textarea>--%>
+<%--			</form>--%>
 
 			<div class="nk-gap-2"></div>
-			<a class="nk-btn nk-btn-rounded nk-btn-color-main-1" href="CheckoutSubmit">Place
-				Order</a>
+
+
+<%--			<a class="nk-btn nk-btn-rounded nk-btn-color-main-1" href="checkout">Place--%>
+<%--				Order</a>--%>
 		</div>
 	</div>
 

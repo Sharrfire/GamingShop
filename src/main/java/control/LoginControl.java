@@ -41,11 +41,10 @@ public class LoginControl extends HttpServlet {
 		ProductDAO productDao = new ProductDAO();
 		CategoryDAO cdao= new CategoryDAO();
 		AccountDAO adao= new AccountDAO();
-
 		List<Category> listCate = cdao.getAllCategory();
 		// b2: set data to jsp
 		request.setAttribute("listCate", listCate);
-		
+
 		Boolean checkValid=adao.checkLogin(username, pass);
 		Account a= adao.login(username, pass);
 		if(pass==null) { //fix truong hop message loi xuat hien khi moi load trang

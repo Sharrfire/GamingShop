@@ -98,7 +98,7 @@ img {
 					<div class="modal-body">
 
 						<div class="form-group">
-							<p class="text-danger">${mess}</p>
+<%--							<p class="text-danger">${mess}</p>--%>
 
 							<label>Name</label> <input name="name" type="text"
 								class="form-control" required>
@@ -127,7 +127,7 @@ img {
 						<div class="form-group">
 							<label>Category</label> <select name="category"
 								class="form-select" aria-label="Default select example">
-								<c:forEach items="${listCC}" var="c">
+								<c:forEach items="${listCate}" var="c">
 									<option value="${c.cid}">${c.cname}</option>
 								</c:forEach>
 							</select>

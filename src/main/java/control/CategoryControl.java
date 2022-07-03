@@ -139,7 +139,7 @@ public class CategoryControl extends HttpServlet {
 	}
 
 	public static void main(String[] args) {
-		ProductDAO productDao = new ProductDAO();
+
 		PaginationDAO pdao= new PaginationDAO();
 //	Product p1 = dao.getProductByID("1");
 		List<Product> listP = pdao.getAllPaginProduct(1);

@@ -38,14 +38,11 @@ public class LoadProduct extends HttpServlet {
 		// b1: get data from dao
 		ProductDAO productDao = new ProductDAO();
 		CategoryDAO cdao= new CategoryDAO();
-
 		List<Category> listCate = cdao.getAllCategory();
 		Product p = productDao.getProductByID(pID);
 		// b2: set data to jsp
 		request.setAttribute("detail", p);
 		request.setAttribute("listCC", listCate);
-	
-
 		request.getRequestDispatcher("/views/edit.jsp").forward(request, response);	}
 
 	/**

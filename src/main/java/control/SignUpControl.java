@@ -52,14 +52,14 @@ public class SignUpControl extends HttpServlet {
 		}else {
 			Account a = adao.checkAcountExist(username);
 			if(!pass.equals(re_pass)) {
-				request.setAttribute("mess", "Pass and RePass must be the same");
+				request.setAttribute("mess", "Pass and Retype Password must be the same");
 				request.getRequestDispatcher("/views/signUp.jsp").forward(request, response);
 			}else if(a==null) {
 				adao.signup(username, pass);
 				response.sendRedirect("login");
 
 			}else {
-				request.setAttribute("mess", "Pass and RePass must be the same");
+				request.setAttribute("mess", "Pass and Retype Password must be the same");
 				request.getRequestDispatcher("/views/signUp.jsp").forward(request, response);
 
 			}

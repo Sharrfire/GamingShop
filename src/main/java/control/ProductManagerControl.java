@@ -21,65 +21,57 @@ import entity.Product;
  */
 @WebServlet("/productManager")
 public class ProductManagerControl extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public ProductManagerControl() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ProductManagerControl() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		HttpSession session= request.getSession();
-		Account a= (Account) session.getAttribute("acc");
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        HttpSession session = request.getSession();
+        Account a = (Account) session.getAttribute("acc");
+        ProductDAO productDao = new ProductDAO();
+        CategoryDAO cdao = new CategoryDAO();
 
-		if(a == null) {
-			ProductDAO productDao = new ProductDAO();
-			CategoryDAO cdao = new CategoryDAO();
-
-			List<Product> list = productDao.getAllProduct();
-			List<Product> listT10 = productDao.getTop10Product();
-			List<Product> listGOTY = productDao.getGOTY();
-			List<Product> listLatest = productDao.getLast();
-			List<Category> listCate = cdao.getAllCategory();
-
-			// b2: set data to jsp
-			request.setAttribute("listP", list);
-			request.setAttribute("listT10", listT10);
-			request.setAttribute("listGOTY", listGOTY);
-			request.setAttribute("listLatest", listLatest);
-			request.setAttribute("listCate", listCate);
-			request.setAttribute("mess", "Back to home!");
-			request.getRequestDispatcher("/views/home.jsp").forward(request, response);
-		}else {
+        List<Product> listT10 = productDao.getTop10Product();
+        List<Product> listGOTY = productDao.getGOTY();
+        List<Product> listLatest = productDao.getLast();
+        List<Category> listCate = cdao.getAllCategory();
+        List<Product> listP = productDao.getAllProduct();
 
 
-			int id= a.getId();
-			ProductDAO productDao = new ProductDAO();
-			CategoryDAO cdao= new CategoryDAO();
-			List<Product> listP= productDao.getProductBySellID(id);
-			List<Category> listCC= cdao.getAllCategory();
+        // b2: set data to jsp
 
-			request.setAttribute("listP", listP);
-			request.setAttribute("listCC", listCC);
+        request.setAttribute("listP", listP);
+        request.setAttribute("listT10", listT10);
+        request.setAttribute("listGOTY", listGOTY);
+        request.setAttribute("listLatest", listLatest);
+        request.setAttribute("listCate", listCate);
 
-			request.getRequestDispatcher("/views/ManagerProduct.jsp").forward(request, response);
-		}
+        request.setAttribute("mess", "Back to home!");
+        if (a == null) {
+            request.getRequestDispatcher("/views/home.jsp").forward(request, response);
+        } else {
+            int id = a.getId();
+            request.getRequestDispatcher("/views/ManagerProduct.jsp").forward(request, response);
+        }
 
-	}
+    }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        doGet(request, response);
+    }
 
 }

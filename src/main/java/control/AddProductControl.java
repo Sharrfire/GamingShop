@@ -35,7 +35,6 @@ public class AddProductControl extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		ProductDAO productDao = new ProductDAO();
-		CategoryDAO cdao = new CategoryDAO();
 
 		String name = request.getParameter("name");
 		String price = request.getParameter("price");

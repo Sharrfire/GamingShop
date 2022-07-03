@@ -22,54 +22,46 @@ import entity.Product;
  */
 @WebServlet("/CheckoutSubmit")
 public class CheckoutSubmitControl extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public CheckoutSubmitControl() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public CheckoutSubmitControl() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		ProductDAO productDao = new ProductDAO();
-		CategoryDAO cdao = new CategoryDAO();
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+     * response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // TODO Auto-generated method stub
 
-		HttpSession session = request.getSession();
-		String fname = request.getParameter("fname");
+        CategoryDAO cdao = new CategoryDAO();
+        HttpSession session = request.getSession();
+        Cart cart = Cart.getCart(session);
+        double total = cart.total();
 
-		Cart cart = Cart.getCart(session);
+        Collection<Product> data = cart.getData();
+        List<Category> listCate = cdao.getAllCategory();
+        request.setAttribute("data", data);
+        request.setAttribute("total", total);
+        request.setAttribute("listCate", listCate);
+        data.removeAll(data);
+        response.sendRedirect("home");
+    }
 
-		double total = cart.total();
-
-		Collection<Product> data = cart.getData();
-		List<Category> listCate = cdao.getAllCategory();
-
-
-			request.setAttribute("data", data);
-			request.setAttribute("total", total);
-			request.setAttribute("listCate", listCate);
-		
-			data.removeAll(data);
-			response.sendRedirect("home");
-
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+     * response)
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        doGet(request, response);
+    }
 
 }
