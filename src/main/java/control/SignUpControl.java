@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.AccountDAO;
 import dao.CategoryDAO;
 import dao.DAO;
 import entity.Account;
@@ -39,6 +40,7 @@ public class SignUpControl extends HttpServlet {
 		// TODO Auto-generated method stub
 		DAO dao = new DAO();
 		CategoryDAO cdao = new CategoryDAO();
+		AccountDAO adao= new AccountDAO();
 
 		List<Category> listCate = cdao.getAllCategory();
 		request.setAttribute("listCate", listCate);
@@ -49,12 +51,12 @@ public class SignUpControl extends HttpServlet {
 		if(pass==null) {
 			request.getRequestDispatcher("/views/signUp.jsp").forward(request, response);
 		}else {
-			Account a = dao.checkAcountExist(username);
+			Account a = adao.checkAcountExist(username);
 			if(!pass.equals(re_pass)) {
 				request.setAttribute("mess", "Pass and RePass must be the same");
 				request.getRequestDispatcher("/views/signUp.jsp").forward(request, response);
 			}else if(a==null) {
-				dao.signup(username, pass);
+				adao.signup(username, pass);
 				response.sendRedirect("login");
 
 			}else {

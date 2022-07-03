@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.AccountDAO;
 import dao.CategoryDAO;
 import dao.DAO;
 import entity.Account;
@@ -40,13 +41,14 @@ public class LoginControl extends HttpServlet {
 		String pass= request.getParameter("pass");
 		DAO dao= new DAO();
 		CategoryDAO cdao= new CategoryDAO();
+		AccountDAO adao= new AccountDAO();
 
 		List<Category> listCate = cdao.getAllCategory();
 		// b2: set data to jsp
 		request.setAttribute("listCate", listCate);
 		
-		Boolean checkValid=dao.checkLogin(username, pass);
-		Account a= dao.login(username, pass);
+		Boolean checkValid=adao.checkLogin(username, pass);
+		Account a= adao.login(username, pass);
 		if(pass==null) { //fix truong hop message loi xuat hien khi moi load trang
 			request.getRequestDispatcher("/views/login.jsp").forward(request, response);
 		}else {
