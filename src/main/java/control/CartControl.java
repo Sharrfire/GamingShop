@@ -1,7 +1,6 @@
 package control;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.Collection;
 import java.util.List;
 
@@ -13,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.CategoryDAO;
-import dao.DAO;
+import dao.ProductDAO;
 import entity.Cart;
 import entity.Category;
 import entity.Product;
@@ -41,7 +40,7 @@ public class CartControl extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		DAO dao = new DAO();
+		ProductDAO productDao = new ProductDAO();
 		CategoryDAO cdao = new CategoryDAO();
 		HttpSession session = request.getSession();
 		Cart cart = Cart.getCart(session);

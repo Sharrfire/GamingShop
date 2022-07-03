@@ -1,7 +1,6 @@
 
 package control;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.CategoryDAO;
-import dao.DAO;
+import dao.ProductDAO;
 import entity.Product;
 import entity.Category;
 
@@ -23,12 +22,12 @@ public class HomeControl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// b1: get data from dao
-		DAO dao = new DAO();
+		ProductDAO productDao = new ProductDAO();
 		CategoryDAO cdao= new CategoryDAO();
-		List<Product> list = dao.getAllProduct();
-		List<Product> listT10 = dao.getTop10Product();
-		List<Product> listGOTY = dao.getGOTY();
-		List<Product> listLatest = dao.getLast();
+		List<Product> list = productDao.getAllProduct();
+		List<Product> listT10 = productDao.getTop10Product();
+		List<Product> listGOTY = productDao.getGOTY();
+		List<Product> listLatest = productDao.getLast();
 		List<Category> listCate = cdao.getAllCategory();
 
 		// b2: set data to jsp

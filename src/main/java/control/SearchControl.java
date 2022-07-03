@@ -1,7 +1,6 @@
 package control;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.CategoryDAO;
-import dao.DAO;
+import dao.ProductDAO;
 import entity.Category;
 import entity.Product;
 
@@ -36,10 +35,10 @@ public class SearchControl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String txtSearch= request.getParameter("txt");
-		DAO dao = new DAO();
+		ProductDAO productDao = new ProductDAO();
 		CategoryDAO cdao = new CategoryDAO();
 
-		List<Product> list = dao.getProductByName(txtSearch);
+		List<Product> list = productDao.getProductByName(txtSearch);
 		List<Category> listCate = cdao.getAllCategory();
 		
 		request.setAttribute("listCate", listCate);

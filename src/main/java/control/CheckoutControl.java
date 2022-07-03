@@ -1,7 +1,7 @@
 package control;
 
 import dao.CategoryDAO;
-import dao.DAO;
+import dao.ProductDAO;
 import entity.Cart;
 import entity.Category;
 import entity.Product;
@@ -33,7 +33,7 @@ public class CheckoutControl extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		DAO dao = new DAO();
+		ProductDAO productDao = new ProductDAO();
 		CategoryDAO cdao = new CategoryDAO();
 
 		List<Category> listCate = cdao.getAllCategory();

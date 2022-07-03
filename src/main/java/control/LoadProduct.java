@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.CategoryDAO;
-import dao.DAO;
+import dao.ProductDAO;
 import entity.Category;
 import entity.Product;
 
@@ -36,11 +36,11 @@ public class LoadProduct extends HttpServlet {
 		// TODO Auto-generated method stub
 		String pID = request.getParameter("pid");
 		// b1: get data from dao
-		DAO dao = new DAO();
+		ProductDAO productDao = new ProductDAO();
 		CategoryDAO cdao= new CategoryDAO();
 
 		List<Category> listCate = cdao.getAllCategory();
-		Product p = dao.getProductByID(pID);
+		Product p = productDao.getProductByID(pID);
 		// b2: set data to jsp
 		request.setAttribute("detail", p);
 		request.setAttribute("listCC", listCate);

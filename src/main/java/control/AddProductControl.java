@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.CategoryDAO;
-import dao.DAO;
+import dao.ProductDAO;
 import entity.Account;
 
 /**
@@ -34,7 +34,7 @@ public class AddProductControl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		DAO dao = new DAO();
+		ProductDAO productDao = new ProductDAO();
 		CategoryDAO cdao = new CategoryDAO();
 
 		String name = request.getParameter("name");
@@ -50,7 +50,7 @@ public class AddProductControl extends HttpServlet {
 		HttpSession session = request.getSession();
 		Account a = (Account) session.getAttribute("acc");
 		int sid = a.getId();
-		dao.insertProduct(name, Double.parseDouble(price), image, shortDescription, description, soldAmountInteger,
+		productDao.insertProduct(name, Double.parseDouble(price), image, shortDescription, description, soldAmountInteger,
 				categorytInteger, sid);
 		response.sendRedirect("productManager");
 

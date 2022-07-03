@@ -11,10 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.AccountDAO;
 import dao.CategoryDAO;
-import dao.DAO;
+import dao.ProductDAO;
 import entity.Account;
 import entity.Category;
-import entity.Product;
 
 /**
  * Servlet implementation class SignUpControl
@@ -38,7 +37,7 @@ public class SignUpControl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		DAO dao = new DAO();
+		ProductDAO productDao = new ProductDAO();
 		CategoryDAO cdao = new CategoryDAO();
 		AccountDAO adao= new AccountDAO();
 

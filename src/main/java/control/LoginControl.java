@@ -12,10 +12,9 @@ import javax.servlet.http.HttpSession;
 
 import dao.AccountDAO;
 import dao.CategoryDAO;
-import dao.DAO;
+import dao.ProductDAO;
 import entity.Account;
 import entity.Category;
-import entity.Product;
 
 /**
  * Servlet implementation class LoginControl
@@ -39,7 +38,7 @@ public class LoginControl extends HttpServlet {
 		// TODO Auto-generated method stub
 		String username= request.getParameter("username");
 		String pass= request.getParameter("pass");
-		DAO dao= new DAO();
+		ProductDAO productDao = new ProductDAO();
 		CategoryDAO cdao= new CategoryDAO();
 		AccountDAO adao= new AccountDAO();
 

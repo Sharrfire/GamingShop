@@ -8,9 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.DAO;
+import dao.ProductDAO;
 import entity.Cart;
-import entity.Product;
 
 /**
  * Servlet implementation class RemoveCartControl
@@ -38,7 +37,7 @@ public class RemoveCartControl extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		String id = request.getParameter("id");
-		DAO dao = new DAO();
+		ProductDAO productDao = new ProductDAO();
 		if (id == null)
 			response.sendRedirect("home");
 		HttpSession session = request.getSession();

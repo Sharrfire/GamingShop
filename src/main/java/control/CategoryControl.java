@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.CategoryDAO;
-import dao.DAO;
+import dao.ProductDAO;
+import dao.PaginationDAO;
 import entity.Category;
 import entity.Product;
 
@@ -65,11 +66,12 @@ public class CategoryControl extends HttpServlet {
 			doGet_DisplayAll(request, response);
 
 		} else {
-			DAO dao = new DAO();
+			ProductDAO productDao = new ProductDAO();
 			CategoryDAO cdao = new CategoryDAO() ;
-			int numberPage = dao.getNumberPage();
+			PaginationDAO pdao= new PaginationDAO();
+			int numberPage = pdao.getNumberPage();
 			List<Category> listCate = cdao.getAllCategory();
-			List<Product> listProductByID = dao.getByIdPaginProduct(cateID, id);
+			List<Product> listProductByID = pdao.getByIdPaginProduct(cateID, id);
 			Category c = cdao.getCategoryByID(cateID);
 			// b2: set data to jsp
 			request.setAttribute("numberPage", numberPage);
@@ -87,15 +89,16 @@ public class CategoryControl extends HttpServlet {
 	protected void doGet_DisplayAll(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		DAO dao = new DAO();
+		ProductDAO productDao = new ProductDAO();
 		CategoryDAO cdao= new CategoryDAO();
+		PaginationDAO pdao= new PaginationDAO();
 		String pageIndex = request.getParameter("index");
 
 		if (pageIndex == null)
 			pageIndex = "1";
 		int id = Integer.parseInt(pageIndex);
-		int numberPage = dao.getNumberPage();
-		List<Product> listProductByID = dao.getAllPaginProduct(id);
+		int numberPage = pdao.getNumberPage();
+		List<Product> listProductByID = pdao.getAllPaginProduct(id);
 		List<Category> listCate = cdao.getAllCategory();
 		request.setAttribute("listCate", listCate);
 		request.setAttribute("listProductByID", listProductByID);
@@ -136,9 +139,10 @@ public class CategoryControl extends HttpServlet {
 	}
 
 	public static void main(String[] args) {
-		DAO dao = new DAO();
+		ProductDAO productDao = new ProductDAO();
+		PaginationDAO pdao= new PaginationDAO();
 //	Product p1 = dao.getProductByID("1");
-		List<Product> listP = dao.getAllPaginProduct(1);
+		List<Product> listP = pdao.getAllPaginProduct(1);
 
 		for (Product p : listP) {
 			System.out.println(p.toString());

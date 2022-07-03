@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.DAO;
+import dao.ProductDAO;
 
 /**
  * Servlet implementation class deleteProductControl
@@ -32,8 +32,8 @@ public class DeleteProductControl extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String pid = request.getParameter("pid");
-		DAO dao = new DAO();
-		dao.deleteProduct(pid);
+		ProductDAO productDao = new ProductDAO();
+		productDao.deleteProduct(pid);
 		response.sendRedirect("productManager");
 	}
 

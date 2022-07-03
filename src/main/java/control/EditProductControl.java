@@ -1,7 +1,6 @@
 package control;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,9 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.DAO;
-import entity.Category;
-import entity.Product;
+import dao.ProductDAO;
 
 /**
  * Servlet implementation class LoadProduct
@@ -42,8 +39,8 @@ public class EditProductControl extends HttpServlet {
 		String pcategory = request.getParameter("category");
 
 		// b1: get data from dao
-		DAO dao = new DAO();
-		dao.editProductName(pname,price, pimage, pshortDescription, pDescription,pcategory, pid);
+		ProductDAO productDao = new ProductDAO();
+		productDao.editProductName(pname,price, pimage, pshortDescription, pDescription,pcategory, pid);
 	
 //		(String name, String price,String image,String shortDescription,String description,String category,String pid) {
 
