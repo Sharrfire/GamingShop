@@ -33,6 +33,33 @@ public class PaginationDAO {
                 return	countPage;
             }
         } catch (Exception e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+    public int getNumberPageByCateId(int cid) {
+
+        String query = "SELECT COUNT(*) FROM product where cid=?";
+
+        try {
+            new DBContext();
+            conn = DBContext.getMySQLConnection();// mo ket noi voi sql
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, cid);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                int total = rs.getInt(1);
+                int countPage = 0;
+                countPage = total / 12;
+
+                if(total%12!=0) {
+                    countPage++;
+                };
+                return	countPage;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+
         }
         return 0;
     }
@@ -51,6 +78,8 @@ public class PaginationDAO {
                         rs.getString(6), rs.getInt(7), rs.getInt(8)));
             }
         } catch (Exception e) {
+            System.out.println(e);
+
         }
         return list;
     }
@@ -69,6 +98,8 @@ public class PaginationDAO {
                         rs.getString(6), rs.getInt(7), rs.getInt(8)));
             }
         } catch (Exception e) {
+            System.out.println(e);
+
         }
         return list;
     }
@@ -87,8 +118,14 @@ public class PaginationDAO {
                         rs.getString(6), rs.getInt(7), rs.getInt(8)));
             }
         } catch (Exception e) {
+            System.out.println(e);
+
         }
         return list;
     }
 
+    public static void main(String[] args) {
+        PaginationDAO pdao= new PaginationDAO();
+        System.out.println(pdao.getByIdPaginProduct("2",2));
+    }
 }

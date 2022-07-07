@@ -144,11 +144,13 @@
 			<nav>
 				<c:forEach begin="1" end="${numberPage}" var="number">
 					<c:if test="${number == pageIndex }">
-						<a class="nk-pagination-current" href="?index=${number}">${number}</a>
+<%--						<a class="nk-pagination-current" href="?index=${number}" >${number}</a>--%>
+						<a class="nk-pagination-current" href="javascript:setParam('index', ${number});">${number}</a>
 
 					</c:if>
 					<c:if test="${number != pageIndex }">
-						<a class="" href="?index=${number}">${number}</a>
+<%--						<a class="" href="?index=${number}">${number}</a>--%>
+						<a class="" href="javascript:setParam('index', ${number});">${number}</a>
 					</c:if>
 				</c:forEach>
 			</nav>
@@ -165,9 +167,35 @@
 	<jsp:include page="footer.jsp" />
 </div>
 
-
-
-
+<script>
+		function setParam(name, value) {
+		var l = window.location;
+		/* build params */
+		var params = {};
+		var x = /(?:\??)([^=&?]+)=?([^&?]*)/g;
+		var s = l.search;
+		for(var r = x.exec(s); r; r = x.exec(s))
+	{
+		r[1] = decodeURIComponent(r[1]);
+		if (!r[2]) r[2] = '%%';
+		params[r[1]] = r[2];
+	}
+		/* set param */
+		params[name] = encodeURIComponent(value);
+		/* build search */
+		var search = [];
+		for(var i in params)
+	{
+		var p = encodeURIComponent(i);
+		var v = params[i];
+		if (v != '%%') p += '=' + v;
+		search.push(p);
+	}
+		search = search.join('&');
+		/* execute search */
+		l.search = search;
+	}
+</script>
 <jsp:include page="searchModal.jsp" />
 <jsp:include page="script.jsp" />
 
