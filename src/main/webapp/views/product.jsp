@@ -239,8 +239,9 @@
 										<!-- START: Review -->
 										<div class="nk-comment">
 											<div class="nk-comment-meta">
-												<img src="assets/images/avatar-2.jpg" alt="Witch Murder"
-													class="rounded-circle" width="35"> by <a href="#">Witch
+<%--												<img src="assets/images/avatar-2.jpg" alt="Witch Murder"--%>
+<%--													class="rounded-circle" width="35">--%>
+												by <a href="#">Witch
 													Murder</a> in 20 September, 2018
 												<div class="nk-review-rating" data-rating="4.5">
 													<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
@@ -263,8 +264,9 @@
 										<!-- START: Review -->
 										<div class="nk-comment">
 											<div class="nk-comment-meta">
-												<img src="assets/images/avatar-1.jpg" alt="Hitman"
-													class="rounded-circle" width="35"> by <a href="#">Hitman</a>
+<%--												<img src="assets/images/avatar-1.jpg" alt="Hitman"--%>
+<%--													class="rounded-circle" width="35">--%>
+												 by <a href="#">Hitman</a>
 												in 14 Jule, 2018
 												<div class="nk-review-rating" data-rating="0.5">
 													<i class="fa fa-star"></i> <i class="far fa-star"></i> <i
@@ -282,8 +284,9 @@
 										<!-- START: Review -->
 										<div class="nk-comment">
 											<div class="nk-comment-meta">
-												<img src="assets/images/avatar-3.jpg" alt="Wolfenstein"
-													class="rounded-circle" width="35"> by <a href="#">Wolfenstein</a>
+<%--												<img src="assets/images/avatar-3.jpg" alt="Wolfenstein"--%>
+<%--													class="rounded-circle" width="35">--%>
+												 by <a href="#">Wolfenstein</a>
 												in 27 June, 2018
 												<div class="nk-review-rating" data-rating="3.5">
 													<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i

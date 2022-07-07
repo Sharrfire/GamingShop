@@ -1,5 +1,5 @@
-DROP TABLE PRODUCT;
-
+-- Drop table PRODUCT
+DROP TABLE  iF EXISTS PRODUCT;
 -- Create table PRODUCT
 create table PRODUCT
 (
@@ -10,26 +10,22 @@ IMAGE  TINYTEXT not null,
 shortDescription  TINYTEXT  ,
 description  MEDIUMTEXT  ,
 soldAmount INT not null,
-cID VARCHAR(128)  ,
+cID INT ,
 sell_ID INT ,
-
 primary key (ID)
 ) ;
-
 -- Drop table CATEGORY
-DROP TABLE CATEGORY;
+DROP TABLE  iF EXISTS CATEGORY;
 -- Create table CATEGORY
 create table CATEGORY
 (
-cID INT  AUTO_INCREMENT,
+cID int  AUTO_INCREMENT,
 cNAME  VARCHAR(128) not null,
-
 primary key (CID)
 ) ;
-
-
 -- Drop table Account
-DROP TABLE account;
+DROP TABLE  iF EXISTS account;
+
 -- Create table Account
 create table account
 (
@@ -40,44 +36,18 @@ isSell  VARCHAR(16) not null,
 isAdmin VARCHAR(16) not null,
 primary key (ID)
 ) ;
-
 -- Insert Account data: ---------------------------------------------------------------
-insert into account (username,pass,isSell,isAdmin)
-VALUES ('thai','123',1,1);
-insert into account (username,pass,isSell,isAdmin)
-VALUES ('tran','456',1,0);
-
-insert into account (username,pass,isSell,isAdmin)
-VALUES ('tan','tan',0,0);
-
-insert into account (username,pass,isSell,isAdmin)
-VALUES ('thai123','123',0,0);
-
-
-
-
-
+insert into account (username,pass,isSell,isAdmin) VALUES ('thai','123',1,1);
+insert into account (username,pass,isSell,isAdmin) VALUES ('tran','456',1,0);
+insert into account (username,pass,isSell,isAdmin) VALUES ('tan','tan',0,0);
+insert into account (username,pass,isSell,isAdmin) VALUES ('thai123','123',0,0);
 
 -- Insert CATEGORY data: ---------------------------------------------------------------
-
-insert into CATEGORY (cNAME)
-values ('ACTION');
-
-insert into CATEGORY (cNAME)
-values ('IDDLE');
-
-insert into CATEGORY (cNAME)
-values ('FPS');
-
-insert into CATEGORY (cNAME)
-values ('RPG');
-
-insert into CATEGORY (cNAME)
-values ('HASH & SLASH');
-
-
-select * from PRODUCT WHERE id =10;
-
+insert into CATEGORY (cNAME) values ('ACTION');
+insert into CATEGORY (cNAME) values ('IDDLE');
+insert into CATEGORY (cNAME) values ('FPS');
+insert into CATEGORY (cNAME) values ('RPG');
+insert into CATEGORY (cNAME) values ('HASH & SLASH');
 -- Insert PRODUCT data: ---------------------------------------------------------------
 
 insert into PRODUCT (NAME, PRICE,IMAGE,shortDescription,description,soldAmount,cID,sell_ID)
@@ -142,6 +112,7 @@ insert into PRODUCT (NAME, PRICE,IMAGE,shortDescription,description,soldAmount,c
 
 
 insert into PRODUCT (NAME, PRICE,IMAGE,shortDescription,description,soldAmount,cID,sell_ID) values ( 'Hades', 10.99, 'https://cdn1.epicgames.com/min/offer/1200x1600-1200x1600-e92fa6b99bb20c9edee19c361b8853b9.jpg','Players control Zagreus, the son of Hades, as he attempts to escape from the Underworld to reach Mount Olympus, at times aided by gifts bestowed on him from the other Olympians. Each run challenges the player through a random series of rooms populated with enemies and rewards. The game has a hack and slash combat system.','Zagreus, the son of Hades, seeks to escape his father realm in the Underworld. He is aided by his adoptive mother Nyx, who gives him a special mirror that empowers him with various abilities via collected Darkness; the Gods of Olympus to whom he has reached out, who provide him with Boons that give him special powers, and his mentor Achilles, who provides him with the Infernal Arms and the Codex, weapons that possess powerful and hidden aspects of their past, present, and future wielders. Zagreus is also helped by Charon, who sells various supported items and also employs the skeleton dummy Skelly to help, the departed residents of the Underworld: Sisyphus, Eurydice and Patroclus, who give Zagreus gifts along the way up, and Thanatos, who goes against Hades to occasionally assist Zagreus. Hades hinders Zagreus progress by unleashing the Underworld various residents on him, including the Fury Megaera, Zagreus ex-lover (and later on her sisters Alecto and Tisiphone) in Tartarus; a Lernean Bone Hydra (nicknamed Lernie by Zagreus) in Asphodel; the legendary Theseus alongside his new partner Asterius in Elysium, and finally Hades himself on the surface.',222200,5,7 );
+
 insert into PRODUCT (NAME, PRICE,IMAGE,shortDescription,description,soldAmount,cID,sell_ID)
 values ( 'ELDEN RING', 59.99, 'https://image.api.playstation.com/vulcan/ap/rnd/202108/0410/0Jz6uJLxOK7JOMMfcfHFBi1D.png','ELDEN RING features vast fantastical landscapes and shadowy, complex dungeons that are connected seamlessly.Traverse the breathtaking world on foot or on horseback, alone or online with other players, and fully immerse yourself in the grassy plains, suffocating swamps, spiraling mountains, foreboding castles and other sites of grandeur on a scale never seen before in a FromSoftware title.','Journey through the Lands Between, a new fantasy world created by Hidetaka Miyazaki, creator of the influential DARK SOULS video game series, and George R. R. Martin, author of The New York Times best-selling fantasy series, A Song of Ice and Fire. Unravel the mysteries of the Elden Ring’s power. Encounter adversaries with profound backgrounds, characters with their own unique motivations for helping or hindering your progress, and fearsome creatures. Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring and become an Elden Lord in the Lands Between.
 In the Lands Between ruled by Queen Marika the Eternal, the Elden Ring, the source of the Erdtree, has been shattered.
@@ -150,9 +121,103 @@ And now the guidance of grace will be brought to the Tarnished who were spurned 
 
 insert into PRODUCT (NAME, PRICE,IMAGE,shortDescription,description,soldAmount,cID,sell_ID)
 values ( 'RED DEAD REDEMPTION', 19.99, 'https://d2x08bnoa3twn6.cloudfront.net/wp-content/uploads/2016/10/theVideoGameGallery_19740_1525x1887.png','Red Dead Redemption is a Western Action-Adventure game developed by Rockstar San Diego. It is the spiritual successor to Red Dead Revolver. It was released for the Xbox 360 and PlayStation 3 on May 18, 2010 (North America) and May 21, 2010 (Europe). Red Dead Redemption uses Rockstars RAGE graphics engine, along with NaturalMotions Euphoria character animation/physics software.','The story opens with John Marston, a former outlaw of the Dutch Van Der Linde gang, arriving in Blackwater alongside government agents Edgar Ross and Archer Fordham. The agents escort John to a train which is destined for Armadillo, a town located in the territory of New Austin. His goal is to capture or kill his former gang partner Bill Williamson. Johns wife and son have been kidnapped by the federal agents and threatened with their freedom if he does not comply. He heads out and meets Williamson at Fort Mercer; but after some conversation with him, John is shot by Williamsons men and is left wounded. Bonnie MacFarlane and her ranch hand, Amos find him the next morning, treat his wounds, and provide him lodging in exchange for his help on their ranch.
-While Marston works at the ranch, he also spends some time helping the people of Armadillo and the surrounding area, including US Marshal Leigh Johnson, merchant Nigel West Dickens, alcoholic Irish and crazed prospector Seth Briars. When Williamson finds out that Marston is living at the MacFarlanes ranch, his gang burns the barn. After the burning, John recruits Marshal Johnson, Dickens, Irish and Seth to breach Fort Mercer, Williamsons main base of operations. The "Trojan Horse" strategy works well, but he finds Williamson gone, as he and Javier Escuella, another outlaw in Van Der Lindes gang with Marston, have already fled to Nuevo Paraiso the previous day. Irish takes Marston to Mexico, where they are ambushed on the way in. Marston decides to work with Colonel Allende, a dictator, in several battles, and his captain Vincente de Santa. Marston also works with vigilante aging gunslinger, Landon Ricketts, as well as with the revolutionary army, led by Abraham Reyes. Allende promises Marston that he will assist in capturing Williamson and Escuella but instead betrays Marston and tries to kill him indirectly in Chuparosa. After the attempted murder, Marston joins Reyes and his rebel army. They manage to find Escuella in El Presidio, leaving John to either kill or spare his life before handing him over to Ross. Reyes eventually leads an assault on the villa in Escalera. Allende and Williamson attempt to flee, but are ultimately chased down and executed.',360000,5,9 );
+While Marston works at the ranch, he also spends some time helping the people of Armadillo and the surrounding area, including US Marshal Leigh Johnson, merchant Nigel West Dickens, alcoholic Irish and crazed prospector Seth Briars. When Williamson finds out that Marston is living at the MacFarlanes ranch, his gang burns the barn. After the burning, John recruits Marshal Johnson, Dickens, Irish and Seth to breach Fort Mercer, Williamsons main base of operations. The "Trojan Horse" strategy works well, but he finds Williamson gone, as he and Javier Escuella, another outlaw in Van Der Lindes gang with Marston, have already fled to Nuevo Paraiso the previous day. Irish takes Marston to Mexico, where they are ambushed on the way in. Marston decides to work with Colonel Allende, a dictator, in several battles, and his captain Vincente de Santa. Marston also works with vigilante aging gunslinger, Landon Ricketts, as well as with the revolutionary army, led by Abraham Reyes. Allende promises Marston that he will assist in capturing Williamson and Escuella but instead betrays Marston and tries to kill him indirectly in Chuparosa. After the attempted murder, Marston joins Reyes and his rebel army. They manage to find Escuella in El Presidio, leaving John to either kill or spare his life before handing him over to Ross. Reyes eventually leads an assault on the villa in Escalera. Allende and Williamson attempt to flee, but are ultimately chased down and executed.',360000,5,1 );
 
 insert into PRODUCT (NAME, PRICE,IMAGE,shortDescription,description,soldAmount,cID,sell_ID)
 values ( 'RED DEAD REDEMPTION 2', 29.99, 'https://overclockers.ru/st/legacy/blog/310459/143012_O.jpg','Red Dead Redemption 2 (stylized as Red Dead Redemption II) is a western-themed action-adventure video game developed and published by Rockstar Games. It is the third entry in the Red Dead series and a prequel to 2010s Red Dead Redemption and was released on October 26th, 2018 on PlayStation 4, Xbox One and on November 5th, 2019 for PC.','In May 1899, after a failed ferry heist in the thriving port town of Blackwater, Dutch Van der Linde and his gang are forced to flee the area and attempt to cross the snowy mountains north to avoid the law, leaving their substantial money stash behind. Its members include Arthur Morgan, John Marston, Hosea Matthews, Dutch’s right hand man, Bill Williamson, Javier Escuella, Lenny Summers, Charles Smith, Sean MacGuire, Uncle, Abigail Roberts, Molly OShea, Tilly Jackson, Simon Pearson, Leopold Strauss, Karen Jones, Susan Grimshaw, Josiah Trelawny, Mary-Beth Gaskill, Reverend Swanson, and Micah Bell. The gang set up a camp in the deserted mining town of Colter as a temporary shelter. Arthur, Micah and Dutch find a homestead holding a party, but then realize that the party is hosted by the ODriscolls, a rival gang. The trio defeats them and find Sadie Adler, a widow whose husband was killed by ODriscolls. They take Sadie under their wing.
 
-In order to fund their escape south, Dutch has the gang rob a train belonging to the wealthy oil magnate Leviticus Cornwall. A furious and vengeful Cornwall then hires the Pinkerton Detective Agency, who send Agents Andrew Milton and Edgar Ross to apprehend the gang. Realizing that the progress of civilization is ending the time of outlaws, Dutch and the gang decide to gather up enough money to retire and escape the law for good. The gang relocates south to the state of New Hanover, and the gang perform numerous jobs and heists to gather enough money, as Dutch continually promises one last, big heist that will secure their freedom.',360000,5,10 );
+In order to fund their escape south, Dutch has the gang rob a train belonging to the wealthy oil magnate Leviticus Cornwall. A furious and vengeful Cornwall then hires the Pinkerton Detective Agency, who send Agents Andrew Milton and Edgar Ross to apprehend the gang. Realizing that the progress of civilization is ending the time of outlaws, Dutch and the gang decide to gather up enough money to retire and escape the law for good. The gang relocates south to the state of New Hanover, and the gang perform numerous jobs and heists to gather enough money, as Dutch continually promises one last, big heist that will secure their freedom.',360000,5,1 );
+
+insert into PRODUCT (NAME, PRICE,IMAGE,shortDescription,description,soldAmount,cID,sell_ID) values ( 'Bright Memory: Infinite', 16.99, 'https://store-images.s-microsoft.com/image/apps.25905.14011532625829842.8b68c2ee-279b-4725-9152-fae086765f98.2bb1c47e-1847-4b78-90b4-4df83383a577','Bright Memory: Infinite is a brand new blazing FPS and action game created by FQYD-Studio. Combine a wide variety of techniques and abilities to pull off awesome lightspeed attack combos!','In the year 2036, a strange phenomenon that scientists find no explanation for occurred in the skies around the world. The Supernatural Science Research Organization (SRO) has sent agents to various regions to investigate this phenomenon. It is soon discovered that these strange events are connected to an archaic mystery - a yet unknown story of two worlds is about to be revealed...',360000,1,3 );
+
+insert into PRODUCT (NAME, PRICE,IMAGE,shortDescription,description,soldAmount,cID,sell_ID) values ( 'DNF-Duel', 49.99, 'https://arcsystemworks.com/wp-content/uploads/2022/04/dd_kv-1-1-541x650.png',
+'Combat action at its peak! One of the most popular and widely played RPGs in the world, Dungeon and Fighter is now back as a 2.5D action fighting game. Choose from 16 captivating characters, each with unique skills and personalities. Be smart, excel, or defeat your opponents and become a master of the Ultimate Will!','Very different and a lot of incidents are occurring from a Dragon Knight dealing with distortions and not faring well with a berserker who is running wild with some soldiers who are being led by Cyrus. Cyrus is also insisted by Vanguard.Finally, the game features a dedicated Lore sectionin its menus, designed to bring players up to speed if they are unfamiliar with the plot. This Glossary mode should assist players in better comprehending the game.
+
+That will make this game open to newcomers as they can scroll through entire regions, organizations, terms, and get to know their background much easier. This will help players find out about the whole story of the game.',10000,1,3 );
+
+
+insert into PRODUCT (NAME, PRICE,IMAGE,shortDescription,description,soldAmount,cID,sell_ID) values ( 'MARVEL’S GUARDIANS OF THE GALAXY', 30.11, 'https://cdn-amz.woka.io/images/I/815aqpZqkOS.jpg','If you think its all planned, youre in for a world of surprises, with the consequences of your actions guaranteed to keep the Guardians on their toes. In this Marvels Guardians of the Galaxy origin story, youll cross paths with powerful and unique new creatures and iconic characters, all caught up in the struggle for the fate of the galaxy. Its time to show the universe what youre made of','
+Kick off a wild ride across the universe with a fresh look at Marvels Guardians of the Galaxy. In this third-person action-adventure game, youre the Star-Lord, and thanks to your daring but equally questionable leadership, youve convinced a quirky group of unlikely heroes. likely to join you. Some fool (certainly not you) has caused a chain of catastrophic events, and only you can hold the unpredictable Guardians together long enough to fend off the crisis. whole planet. Use Element Blasters, beat tag team, dropkicks support jet launch, nothing is off limits.'
+,25000,1,3 );
+
+
+
+
+
+insert into PRODUCT (NAME, PRICE,IMAGE,shortDescription,description,soldAmount,cID,sell_ID) values ( 'FAR CRY 6', 79.99, 'https://www.mobygames.com/images/covers/l/768430-far-cry-6-xbox-one-front-cover.jpg','Far Cry 6 is one of the games developed following the previous Far Cry version. It is expected that Far Cry 6 will be released at the end of 2021 and is one of the most anticipated action games this year. The setting in the game is a fictional island of Yara in the Caribbean, which is considered the largest playground of Far Cry ever.','In the game, the player plays the role of a guerrilla fighter named Dani Rojas whose mission is to fight for freedom and bring peace to the island. The players task is to overthrow the reading mode Anton Castillo, the ruler of the island of Yara, he has led his son Diego Castillo to step in his path and become the ruler of this place.
+',500000,1,3 );
+
+
+
+
+insert into PRODUCT (NAME, PRICE,IMAGE,shortDescription,description,soldAmount,cID,sell_ID) values ( 'FAR CRY 5', 59.99,  'https://apptrigger.com/files/2017/05/FC5_KEYART_1495563526.jpg','
+Far Cry 5 is a first-person shooter game developed by Ubisoft Montreal and Ubisoft Toronto and released in 2018. The game is the standalone successor to 2014s Far Cry 4 and the fifth main installment. in the Far Cry series of games.','The game takes place in Hope County, a fictional area in Montana, USA. The main story revolves around Project at Edens Gate, an apocalyptic cult that has taken over the district under the command of its charismatic and determined leader, Joseph Seed. The player controls an unnamed deputy sheriff who is trapped in Hope County, and must work with the resistance factions to free the county from the tyrannical rule of the Seeds and Edens Gate. The gameplay focuses on combat and exploration; The player engages both enemy soldiers and dangerous wildlife using a range of weapons. The game features many elements found in role-playing titles, such as branching storylines and side quests. The game also features a stage engine, a cooperative multiplayer mode, and a competitive multiplayer mode.
+',600000,1,3 );
+
+
+
+
+
+insert into PRODUCT (NAME, PRICE,IMAGE,shortDescription,description,soldAmount,cID,sell_ID) values ( 'FAR CRY 4', 14.99,  'https://apollo2.dl.playstation.net/cdn/EP0001/CUSA00462_00/eWb8JxERVXKknf0yXpNCELiNyS0onpwH.png','Far Cry 4 is a first-person shooter game developed by Ubisoft Montreal and published by Ubisoft in 2014. It is the successor to the 2012 game Far Cry 3, and the fourth installment in the FarCry series. ','The game takes place in Kyrat, a fictional country in the Himalayas. The main story follows Ajay Ghale, a young Kyrat-American, as he becomes embroiled in a civil war involving the Royal Kyrat Army, controlled by the tyrant king Pagan Min, and an insurgency movement. The disorder is called the Golden Path. The gameplay focuses on combat and exploration; Players engage enemy soldiers and dangerous wildlife using a range of weapons. The game features many of the elements found in the role-playing genre, such as branching storylines and side quests. The game also features a stage engine in both cooperative and competitive multiplayer modes.',760000,1,3 );
+
+
+
+insert into PRODUCT (NAME, PRICE,IMAGE,shortDescription,description,soldAmount,cID,sell_ID) values ( 'EVERYTHING IS FOR HUMANITY', 9.99, 'https://daominhha.com/wp-content/uploads/2022/07/download-Everything-Is-For-Humanity-full-crack-daominhha.jpg','
+Everything Is For Humanity is an exploration & escape themed horror & horror game. The game focuses on the plot and the player encounters challenging missions in the linear flow of the game.','Some of the scientific research is carried out in the scientific establishment established under the leadership of Dr. Jeffery Phill. As a result of these studies, the organization has succeeded in producing “Synthetic Brain” and “Human Body” and is now starting to develop an artificial intelligence called SynOS to support the structures. this. . The project received the support of many famous businessmen and the state in a short time. In the game, you will be the leader of the software development team. Youll discover a synthetic creation has fallen into the wrong hands and is trying to create a transcendent humanity, and youll learn some heartbreaking truths. Will you escape? Or, try to stop it?
+',360000,1,3 );
+
+insert into PRODUCT (NAME, PRICE,IMAGE,shortDescription,description,soldAmount,cID,sell_ID) values ( 'Immortal Life', 11.99, 'https://steamuserimages-a.akamaihd.net/ugc/1861686187982494994/5507808AD73610217BE1B56D041B23C00040C7F5/?imw=1024&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false','Immortal Life is a very good and attractive Action, Adventure game. The Immortal Life storyline joins a flourishing settlement in an idyllic valley and seeks a peaceful life as you search for a way to restore your recently destroyed Taoist clan.','Youre tasked with tending the crops but usually, people will need an extra pair of hands to gather different types of raw materials, hunt for more food, or build new facilities.
+
+The more you help your siblings, the stronger your relationship with them will become – as they open up to you, youll gain new items, quests, and skills. The valley itself is waiting for you to know about it – a wonderful place, full of secrets to learn and discover.
+
+Join a flourishing settlement in an idyllic valley and seek a peaceful life as you search for ways to restore your recently destroyed Taoist clan.',360000,1,3 );
+
+
+
+insert into PRODUCT (NAME, PRICE,IMAGE,shortDescription,description,soldAmount,cID,sell_ID) values ( 'Death Stranding', 49.99, 'https://cdn1.epicgames.com/offer/0a9e3c5ab6684506bd624a849ca0cf39/EGS_DeathStrandingDirectorsCut_KOJIMAPRODUCTIONS_S3_2560x1440-fe4e51f1801fba36e452aa3466625789','Death Stranding is an action game set in an open world, and includes asynchronous online functions. Kojima refers to Death Stranding as the first "strand game", an original genre characterized by the games incorporation of social elements. Kojima compared this genre to how his earlier game Metal Gear—now considered a stealth game—was called an action game during its release because the stealth genre had not been established','The player controls Sam Bridges, a porter for a company known as BRIDGES. The player is tasked with delivering supply cargo to various isolated cities known as KNOTs, as well as isolated researchers and survivalists, while also connecting them to a communications system known as the Chiral Network. The player is evaluated by the company and recipients based on their performance (including via "likes" similar to social networks), including whether the cargo was delivered, and if it is intact among other factors. These merits are, in turn, used to level up the players statistics, such as stability and weight capacity, and increase their standing with individual locations and characters (which can improve rewards). How cargo is packed by the player, and the overall weight being carried, affect Sams ability to navigate through the environments.',360000,1,3 );
+insert into PRODUCT (NAME, PRICE,IMAGE,shortDescription,description,soldAmount,cID,sell_ID) values ( 'ELEX II', 23.99, 'https://cdn1.epicgames.com/offer/75c06d52a99942e9884a47deced106bb/EGS_ELEXII_PiranhaBytes_S2_1200x1600-54abb7b85d02538e20e3237f67dd7b59','ELEX II is the sequel to ELEX, the classic open-world immersive experience from the award-winning creators of the Gothic and Risen series, Piranha Bytes. ELEX II returns to the post-apocalyptic Sci-Fi world of Magalan – with vast environments that can be explored with unparalleled freedom via jet set, youll be able to move through the story. epic story any way you want.
+','A few years after Jax defeated Hybrid, a new threat came from the sky, unleashing dangerous power from Eles darkness and endangering all life on the planet. To keep the peace on Magalan and the safety of his family, Jax must go on a mission to convince the factions to unite against the invaders and find his own son, Dex, who has been divided away from him...
+Dive into a huge, handcrafted, completely unique world filled with diverse factions and environments set in a post-apocalyptic sci-fi universe.',360000,1,3 );
+insert into PRODUCT (NAME, PRICE,IMAGE,shortDescription,description,soldAmount,cID,sell_ID) values ( 'ELEX ', 19.99, 'https://img.g2a.com/1080x1080/1x1x0/elex-steam-key-global/59ea17dbae653a077c163552','The quest lines in ELEX are almost no longer simply encapsulated in the motif of "choose A, get outcome B", thanks to the way events are arranged in a natural and never-limited world. players in any stereotype like you dont have enough experience points, not enough levels, dont have the necessary skills or something like that.
+','ELEXs story is about Jax, a character created with everything you can imagine from the "western RPG hero" mold you can imagine. He is a high-ranking Alb commander sent on a secret mission with the aim of conquering the land of Magalan, but things do not go smoothly when Jax is betrayed by his own kind. multiple, and a journey to find out what the hell is going on that leads to a goal of revenge and a whole bunch of shit going on in between. This land is divided into many small areas divided by Berserkers – Viking cosplayers who know how to transform the element Elex into… Mana to serve themselves despite opposing the presence of technology, Outlaw can is considered a Mad Max cosplay convention with a full range of rogues, and Cleric is a fanatic Space Marine cosplay organization but armor is of course not as cool.
+',360000,1,3 );
+-- insert into PRODUCT (NAME, PRICE,IMAGE,shortDescription,description,soldAmount,cID,sell_ID) values ( '', 49.99, '','','',360000,1,3 );
+-- insert into PRODUCT (NAME, PRICE,IMAGE,shortDescription,description,soldAmount,cID,sell_ID) values ( '', 49.99, '','','',360000,1,3 );
+-- insert into PRODUCT (NAME, PRICE,IMAGE,shortDescription,description,soldAmount,cID,sell_ID) values ( '', 49.99, '','','',360000,1,3 );
+-- insert into PRODUCT (NAME, PRICE,IMAGE,shortDescription,description,soldAmount,cID,sell_ID) values ( '', 49.99, '','','',360000,1,3 );
+-- insert into PRODUCT (NAME, PRICE,IMAGE,shortDescription,description,soldAmount,cID,sell_ID) values ( '', 49.99, '','','',360000,1,3 );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
