@@ -57,7 +57,7 @@ public class AccountDAO {
     }
 
     // Check Account exist
-    public Account checkAcountExist(String username) {
+    public boolean checkAcountExist(String username) {
         String query = "SELECT * from account WHERE username=? ";
         try {
             conn = new DBContext().getMySQLConnection();// mo ket noi voi sql
@@ -66,10 +66,12 @@ public class AccountDAO {
 
             rs = ps.executeQuery();
             while (rs.next()) {
+                username.equalsIgnoreCase(rs.getString(2));
+                return true;
             }
         } catch (Exception e) {
         }
-        return null;
+        return false;
     }
 
     // Signup
@@ -105,11 +107,8 @@ public class AccountDAO {
     public static void main(String[] args) {
 
         AccountDAO udao = new AccountDAO();
-        Account checkAcountExist= udao.checkAcountExist("thai");
+        boolean checkAcountExist= udao.checkAcountExist("thai");
         System.out.println(checkAcountExist);
-        List<Account> listA = udao.getAllUser();
-        for (Account a : listA) {
-            System.out.println(a.toString());
-        }
+
     }
 }

@@ -106,7 +106,7 @@
 
 
 			<div class="nk-gap-1"></div>
-			<form action="signup" class="nk-form text-white">
+			<form action="signup" class="nk-form text-white" method="post">
 				<div class="row vertical-gap">
 					<div class="col-md-6">
 						<p class="text-danger">${mess}</p>

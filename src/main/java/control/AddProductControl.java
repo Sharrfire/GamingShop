@@ -51,6 +51,8 @@ public class AddProductControl extends HttpServlet {
 		int sid = a.getId();
 		productDao.insertProduct(name, Double.parseDouble(price), image, shortDescription, description, soldAmountInteger,
 				categorytInteger, sid);
+
+
 		response.sendRedirect("productManager");
 
 	}

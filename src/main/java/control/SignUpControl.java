@@ -20,64 +20,66 @@ import entity.Category;
  */
 @WebServlet("/signup")
 public class SignUpControl extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	static String test;
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public SignUpControl() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    private static final long serialVersionUID = 1L;
+    static String test;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		ProductDAO productDao = new ProductDAO();
-		CategoryDAO cdao = new CategoryDAO();
-		AccountDAO adao= new AccountDAO();
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public SignUpControl() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-		List<Category> listCate = cdao.getAllCategory();
-		request.setAttribute("listCate", listCate);
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+     * response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // TODO Auto-generated method stub
 
-		String username = request.getParameter("username");
-		String pass = request.getParameter("pass");
-		String re_pass = request.getParameter("repass");
-		if(pass==null) {
-			request.getRequestDispatcher("/views/signUp.jsp").forward(request, response);
-		}else {
-			Account a = adao.checkAcountExist(username);
-			if(!pass.equals(re_pass)) {
-				request.setAttribute("mess", "Pass and Retype Password must be the same");
-				request.getRequestDispatcher("/views/signUp.jsp").forward(request, response);
-			}else if(a==null) {
-				adao.signup(username, pass);
-				response.sendRedirect("login");
+        CategoryDAO cdao = new CategoryDAO();
+        AccountDAO adao = new AccountDAO();
 
-			}else {
-				request.setAttribute("mess", "Pass and Retype Password must be the same");
-				request.getRequestDispatcher("/views/signUp.jsp").forward(request, response);
+        List<Category> listCate = cdao.getAllCategory();
+        request.setAttribute("listCate", listCate);
 
-			}
-		
-		}
+        String username = request.getParameter("username");
+        String pass = request.getParameter("pass");
+        String re_pass = request.getParameter("repass");
+        boolean isAcountExist = adao.checkAcountExist(username);
+        if (pass == null) {
+            request.getRequestDispatcher("/views/signUp.jsp").forward(request, response);
+        }
 
-	}
-	// signup
+            if (isAcountExist ==true) {
+                request.setAttribute("mess", "Account is exist!");
+                request.getRequestDispatcher("/views/signUp.jsp").forward(request, response);
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+            } else if (!pass.equals(re_pass)) {
+                request.setAttribute("mess", "Pass and Retype Password must be the same");
+                request.getRequestDispatcher("/views/signUp.jsp").forward(request, response);
+            } else {
 
-		doGet(request, response);
-	}
+                adao.signup(username, pass);
+                response.sendRedirect("login");
+            }
+
+
+
+    }
+    // signup
+
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+     * response)
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // TODO Auto-generated method stub
+
+        doGet(request, response);
+    }
 
 }

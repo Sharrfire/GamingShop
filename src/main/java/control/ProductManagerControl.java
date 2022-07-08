@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.CategoryDAO;
+import dao.PaginationDAO;
 import dao.ProductDAO;
 import entity.Account;
 import entity.Category;
@@ -36,31 +37,35 @@ public class ProductManagerControl extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
+        String pageIndex = request.getParameter("index");
         HttpSession session = request.getSession();
         Account a = (Account) session.getAttribute("acc");
         ProductDAO productDao = new ProductDAO();
+        PaginationDAO pdao= new PaginationDAO();
         CategoryDAO cdao = new CategoryDAO();
-
-        List<Product> listT10 = productDao.getTop10Product();
-        List<Product> listGOTY = productDao.getGOTY();
-        List<Product> listLatest = productDao.getLast();
+        if (pageIndex == null)
+            pageIndex = "1";
+        int pageIndexToInt = Integer.parseInt(pageIndex);
+        int numberPage = pdao.getNumberPage();
+        int productTotal= pdao.getTotalProduct();
+        List<Product> listProductByID = pdao.getAllPaginProduct(pageIndexToInt);
         List<Category> listCate = cdao.getAllCategory();
         List<Product> listP = productDao.getAllProduct();
 
 
         // b2: set data to jsp
-
         request.setAttribute("listP", listP);
-        request.setAttribute("listT10", listT10);
-        request.setAttribute("listGOTY", listGOTY);
-        request.setAttribute("listLatest", listLatest);
+        request.setAttribute("listProductByID", listProductByID);
+        request.setAttribute("productTotal", productTotal);
         request.setAttribute("listCate", listCate);
-
+        request.setAttribute("numberPage", numberPage);
+        request.setAttribute("pageIndex", pageIndex);
         request.setAttribute("mess", "Back to home!");
         if (a == null) {
-            request.getRequestDispatcher("/views/home.jsp").forward(request, response);
+//            request.getRequestDispatcher("/views/home.jsp").forward(request, response);
+            response.sendRedirect("home");
         } else {
-            int id = a.getId();
+//            int id = a.getId();
             request.getRequestDispatcher("/views/ManagerProduct.jsp").forward(request, response);
         }
 

@@ -31,27 +31,36 @@
     </style>
 <body>
 <div class="container">
+
     <div class="table-wrapper">
         <div class="table-title">
             <div class="row">
                 <div class="col-sm-6">
                     <h2>
                         Manager <b>Product</b>
-                        </h2>
+                    </h2>
                 </div>
+
                 <div class="col-sm-6">
+                    <a href="home" class="btn btn-primary">
+
+                        <span>Back To Home</span>
+                    </a>
+
                     <a href="#addEmployeeModal" class="btn btn-success"
                        data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add
 								New Product</span></a>
+
                 </div>
+
+
+
             </div>
         </div>
         <table class="table table-striped table-hover">
             <thead>
             <tr>
-                <th><span class="custom-checkbox"> <input
-                        type="checkbox" id="selectAll"> <label for="selectAll"></label>
-						</span></th>
+
                 <th>ID</th>
                 <th>Name</th>
                 <th>Image</th>
@@ -60,20 +69,18 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${listP}" var="o">
+            <c:forEach items="${listProductByID}" var="o">
                 <tr>
-                    <td><span class="custom-checkbox"> <input
-                            type="checkbox" id="checkbox1" name="options[]" value="1">
-									<label for="checkbox1"></label>
-							</span></td>
+
                     <td>${o.id}</td>
                     <td>${o.name}</td>
                     <td><img src="${o.image}"></td>
                     <td>${o.price}$</td>
                     <td><a href="loadProduct?pid=${o.id}" class="edit"
                            data-toggle="modal"><i class="material-icons"
-                                                  data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a
-                            href="deleteProduct?pid=${o.id}" class="delete"
+                                                  data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                        <a   style="cursor: pointer" class="delete" onclick="confirmDelete(${o.id})"
+<%--                              href="deleteProduct?pid=${o.id}"--%>
                             data-toggle="modal"><i class="material-icons"
                                                    data-toggle="tooltip" title="Delete">&#xE872;</i></a></td>
                 </tr>
@@ -82,11 +89,28 @@
         </table>
 
     </div>
-    <a href="home">
-        <button type="button" class="btn btn-primary">Back
-            to home
-        </button>
-    </a>
+
+
+    <div class="clearfix">
+        <div class="hint-text">Showing <b>12</b> out of <b>${productTotal}</b> total product</div>
+        <ul class="pagination">
+
+            <c:forEach begin="1" end="${numberPage}" var="number">
+                <c:if test="${number == pageIndex }">
+                    <%--						<a class="nk-pagination-current" href="?index=${number}" >${number}</a>--%>
+                    <li class="page-item active"><a href="?index=${number}" class="page-link">${number}</a></li>
+
+                </c:if>
+                <c:if test="${number != pageIndex }">
+                    <%--						<a class="" href="?index=${number}">${number}</a>--%>
+                    <li class="page-item "><a href="?index=${number}" class="page-link">${number}</a></li>
+
+                </c:if>
+            </c:forEach>
+
+        </ul>
+    </div>
+</div>
 
 </div>
 <!-- Edit Modal HTML -->
@@ -104,16 +128,19 @@
                     <div class="form-group">
                         <%--							<p class="text-danger">${mess}</p>--%>
 
-                        <label>Name</label> <input name="name" type="text"
-                                                   class="form-control" required>
+                        <label>Name</label>
+                        <input name="name" type="text"
+                               class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label>Price</label> <input name="price" type="number"
-                                                    step="0.01" class="form-control" required>
+                        <label>Price</label>
+                        <input name="price" type="number"
+                               step="0.01" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label>Image</label> <input name="image" type="text"
-                                                    class="form-control" required>
+                        <label>Image</label>
+                        <input name="image" type="text"
+                               class="form-control" required>
                     </div>
 
                     <div class="form-group">
@@ -144,13 +171,24 @@
                                                   class="btn btn-success" value="Add">
                 </div>
             </form>
+
+
         </div>
     </div>
+
+    </div>
+
+
+    <script type="text/javascript" href="assets/js/manager.js"></script>
 </div>
 
-
-<script type="text/javascript" href="assets/js/manager.js">
-
+<script>
+    function confirmDelete(id) {
+        if (window.confirm('Do you want to delete?')) {
+            var newHref=`deleteProduct?pid=`+ id
+            window.location.href=newHref;
+        };    }
 </script>
+
 </body>
 </html>

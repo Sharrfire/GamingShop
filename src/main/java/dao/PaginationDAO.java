@@ -16,7 +16,6 @@ public class PaginationDAO {
     ResultSet rs = null;
 
     public int getNumberPage() {
-
         String query = "SELECT COUNT(*) FROM product";
         try {
             new DBContext();
@@ -37,6 +36,26 @@ public class PaginationDAO {
         }
         return 0;
     }
+    public int getTotalProduct() {
+        String query = "SELECT COUNT(*) FROM product";
+        try {
+            new DBContext();
+            conn = DBContext.getMySQLConnection();// mo ket noi voi sql
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                int total = rs.getInt(1);
+
+                return	total;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+
+
+
     public int getNumberPageByCateId(int cid) {
 
         String query = "SELECT COUNT(*) FROM product where cid=?";
@@ -98,7 +117,6 @@ public class PaginationDAO {
                         rs.getString(6), rs.getInt(7), rs.getInt(8)));
             }
         } catch (Exception e) {
-            System.out.println(e);
 
         }
         return list;

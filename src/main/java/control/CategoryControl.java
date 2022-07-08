@@ -42,19 +42,18 @@ public class CategoryControl extends HttpServlet {
 //        System.out.println(pageIndex);
         if (pageIndex == null)
             pageIndex = "1";
-
         if (cateID == null) {
             doGet_DisplayAll(request, response);
-
         } else {
+            PaginationDAO pdao = new PaginationDAO();
+            CategoryDAO cdao = new CategoryDAO();
+            Category c = cdao.getCategoryByID(cateID);
             int cateIdToInt= Integer.parseInt(cateID);
             int id = Integer.parseInt(pageIndex);
-            PaginationDAO pdao = new PaginationDAO();
             int numberPage = pdao.getNumberPageByCateId(cateIdToInt);
 
 
-            CategoryDAO cdao = new CategoryDAO();
-            Category c = cdao.getCategoryByID(cateID);
+
 
 
             List<Category> listCate = cdao.getAllCategory();
