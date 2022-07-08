@@ -69,7 +69,7 @@
 			<div class="nk-gap"></div>
 									<p class="text-danger">${mess}</p>
 			
-			<form action="sendMail" class="nk-form" method="post">
+			<form action="checkoutSubmit" class="nk-form" method="post">
 				<div class="row vertical-gap">
 				
 					<div class="col-lg-6">
@@ -117,6 +117,7 @@
 				<div class="nk-gap-2"></div>
 					<div class="nk-gap-1"></div>
 					<label for="notes">Order Notes:</label>
+
 					<textarea class="form-control" name="notes" id="notes"
 							  placeholder="Order Notes" rows="6"></textarea>
 
